@@ -1,0 +1,187 @@
+﻿<Window x:Class="TripAdvisor.RestaurantAccessed"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TripAdvisor"
+        xmlns:views="clr-namespace:TripAdvisor.Views"
+        mc:Ignorable="d"
+        Title="Trip Advisor"
+        Height="600" Width="600" 
+        Icon="/Resources/tripadvisor_icon.png"
+        MinHeight="700" MinWidth="600"
+        MaxHeight="1000" MaxWidth="1000"
+        HorizontalAlignment="Center">
+    <Grid Background="#00AF88">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="50"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="50"/>
+        </Grid.ColumnDefinitions>
+        <Rectangle Grid.ColumnSpan="3">
+            <Rectangle.Fill>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1" >
+                    <GradientStop Color="AliceBlue" Offset="0" />
+                    <GradientStop Color="MediumAquamarine" Offset="1.0" />
+                </LinearGradientBrush>
+            </Rectangle.Fill>
+        </Rectangle>
+
+        <TextBlock Name="Textblock_title"
+                   FontFamily="Heebo"
+                   FontSize="26"
+                   FontWeight="Bold"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   Grid.ColumnSpan="3"/>
+
+        <DockPanel Grid.ColumnSpan="3" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Top">
+            <StackPanel Background="AliceBlue" MaxHeight="430" Grid.Column="1">
+                <Image Name="Image_imageSlider"
+               Source="/Resources/noimage.jpg"
+               MaxHeight="380"
+               MaxWidth="600"
+               Margin="10"
+               HorizontalAlignment="Center"
+               VerticalAlignment="Center"/>
+                <DockPanel HorizontalAlignment="Right" VerticalAlignment="Top">
+                    <TextBlock Name="Textblock_published"
+                       Text="{Binding}"
+                       FontFamily="Heebo"
+                       FontSize="12"
+                       Margin="5"/>
+                </DockPanel>
+            </StackPanel> 
+        </DockPanel>
+        <Button Name="Button_imageLeft"
+                Click="Button_imageLeft_Click"
+                Width="50"
+                Height="50"
+                FontSize="20"
+                Grid.Row="1"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Right">
+            <Image Source="/Resources/leftarrow.png"/>
+        </Button>
+        <Button Name="Button_imageRight"
+                Click="Button_imageRight_Click"
+                Width="50"
+                Height="50"
+                FontSize="20"
+                Grid.Column="2"
+                Grid.Row="1"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Left">
+            <Image Source="/Resources/rightarrow.png"/>
+        </Button>
+
+        <StackPanel Grid.Row="2" Grid.ColumnSpan="3">
+            <TextBlock Text="Restaurant Information:"
+                   FontFamily="Heebo"
+                   FontSize="20"
+                   FontWeight="Bold"
+                   HorizontalAlignment="Left"
+                   Margin="20,0,0,0"
+                   VerticalAlignment="Center"/>
+            
+            
+            <DockPanel>
+                <TextBlock  Text="Description: "
+                   FontFamily="Heebo"
+                   FontSize="12"
+                   FontWeight="Bold"
+                   HorizontalAlignment="Left"
+                   Margin="40,0,0,0"
+                   VerticalAlignment="Center"/>
+                <TextBlock Name="Textblock_descriere"
+                           Text="{Binding Descriere}"
+                   FontFamily="Heebo"
+                   FontSize="12"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Center"/>
+            </DockPanel>
+            <DockPanel>
+                <TextBlock Text="Phone Number: "
+                   FontFamily="Heebo"
+                   FontSize="12"
+                   FontWeight="Bold"
+                   HorizontalAlignment="Left"
+                   Margin="40,0,0,0"
+                   VerticalAlignment="Center"/>
+                <TextBlock Name="Textblock_nrTelefon"
+                           Text="{Binding NumarTelefon}"
+                   FontFamily="Heebo"
+                   FontSize="12"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Center"/>
+            </DockPanel>
+            <DockPanel>
+                <TextBlock Text="Adresa: "
+                   FontFamily="Heebo"
+                   FontSize="12"
+                   FontWeight="Bold"
+                   HorizontalAlignment="Left"
+                   Margin="40,0,0,0"
+                   VerticalAlignment="Center"/>
+                <TextBlock Name="Textblock_adresa"
+                           Text="{Binding Adresa}"
+                   FontFamily="Heebo"
+                   FontSize="12"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Center"/>
+            </DockPanel>
+            <DockPanel>
+                <TextBlock Text="Program: "
+                   FontFamily="Heebo"
+                   FontSize="12"
+                   FontWeight="Bold"
+                   HorizontalAlignment="Left"
+                   Margin="40,0,0,0"
+                   VerticalAlignment="Center"/>
+                <TextBlock Name="Textblock_program"
+                           Text="{Binding Program}"
+                   FontFamily="Heebo"
+                   FontSize="12"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Center"/>
+            </DockPanel>
+        </StackPanel>
+
+        <TextBlock Text="Reviews:"
+                   Grid.Row="3"
+                   FontFamily="Heebo"
+                   FontSize="20"
+                   FontWeight="Bold"
+                   HorizontalAlignment="Left"
+                   Margin="20,0,0,0"
+                   VerticalAlignment="Center"/>
+
+
+
+        <ListBox Name="listView_reviews" Margin="40,20,40,20" ItemsSource="{Binding}" Background="AliceBlue">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="50"/>
+                            <ColumnDefinition Width="50"/>
+                            <ColumnDefinition Width="50"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="55"/>
+                            <RowDefinition Height="55"/>
+                        </Grid.RowDefinitions>
+                        
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+    </Grid>
+</Window>
