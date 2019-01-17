@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="TripAdvisorModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="TripAdvisorModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Camere">
           <Key>
             <PropertyRef Name="CameraID" />
@@ -471,6 +471,9 @@ warning 6002: The table/view 'TripAdvisor.dbo.Rezervari' does not have a primary
         <Function Name="getRestaurants" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Oras" Type="nvarchar" Mode="In" />
         </Function>
+        <Function Name="getTop3Restaurants" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Oras" Type="nvarchar" Mode="In" />
+        </Function>
         <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
           <Parameter Name="owner_id" Type="int" Mode="In" />
@@ -638,8 +641,7 @@ warning 6002: The table/view 'TripAdvisor.dbo.Rezervari' does not have a primary
             <End Role="Rezervari" EntitySet="Rezervari" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="TripAdvisorModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -1211,10 +1213,10 @@ warning 6002: The table/view 'TripAdvisor.dbo.Rezervari' does not have a primary
             <End Role="Restaurante" EntitySet="Restaurante" />
           </AssociationSet>
           <FunctionImport Name="getRestaurantPhotos" ReturnType="Collection(TripAdvisorModel.getRestaurantPhotos_Result)">
-            <Parameter Name="restaurantID" Mode="In" Type="Int32" />
+          <Parameter Name="restaurantID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="getRestaurants" ReturnType="Collection(TripAdvisorModel.getRestaurants_Result)">
-            <Parameter Name="Oras" Mode="In" Type="String" />
+          <Parameter Name="Oras" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_alterdiagram">
             <Parameter Name="diagramname" Mode="In" Type="String" />
@@ -1246,6 +1248,9 @@ warning 6002: The table/view 'TripAdvisor.dbo.Rezervari' does not have a primary
             <Parameter Name="new_diagramname" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_upgraddiagrams" />
+          <FunctionImport Name="getTop3Restaurants" ReturnType="Collection(TripAdvisorModel.getTop3Restaurants_Result)">
+            <Parameter Name="Oras" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="getRestaurantPhotos_Result">
           <Property Type="String" Name="Nume" Nullable="false" MaxLength="255" />
@@ -1271,6 +1276,14 @@ warning 6002: The table/view 'TripAdvisor.dbo.Rezervari' does not have a primary
           <Property Type="Int32" Name="ID" Nullable="false" />
           <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
           <Property Type="Int32" Name="OwnerID" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="getTop3Restaurants_Result">
+          <Property Type="Int32" Name="RestaurantID" Nullable="false" />
+          <Property Type="String" Name="Nume" Nullable="false" MaxLength="255" />
+          <Property Type="Binary" Name="Poza" Nullable="true" />
+          <Property Type="Double" Name="UserReview" Nullable="false" />
+          <Property Type="Double" Name="UserPricing" Nullable="false" />
+          <Property Type="Int32" Name="NrReviewuri" Nullable="false" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -1516,6 +1529,18 @@ warning 6002: The table/view 'TripAdvisor.dbo.Rezervari' does not have a primary
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="TripAdvisorModel.Store.sp_renamediagram" />
           <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="TripAdvisorModel.Store.sp_upgraddiagrams" />
+          <FunctionImportMapping FunctionImportName="getTop3Restaurants" FunctionName="TripAdvisorModel.Store.getTop3Restaurants">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TripAdvisorModel.getTop3Restaurants_Result">
+                <ScalarProperty Name="RestaurantID" ColumnName="RestaurantID" />
+                <ScalarProperty Name="Nume" ColumnName="Nume" />
+                <ScalarProperty Name="Poza" ColumnName="Poza" />
+                <ScalarProperty Name="UserReview" ColumnName="UserReview" />
+                <ScalarProperty Name="UserPricing" ColumnName="UserPricing" />
+                <ScalarProperty Name="NrReviewuri" ColumnName="NrReviewuri" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

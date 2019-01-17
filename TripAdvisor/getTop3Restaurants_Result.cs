@@ -11,19 +11,13 @@ namespace TripAdvisor
 {
     using System;
     
-    public partial class getRestaurants_Result
+    public partial class getTop3Restaurants_Result
     {
         public int RestaurantID { get; set; }
         public string Nume { get; set; }
-        public string Adresa { get; set; }
         public byte[] Poza { get; set; }
         public double UserReview { get; set; }
         public double UserPricing { get; set; }
-
-        getRestaurants_Result(string nume,byte[] poza)
-        {
-            Nume = nume;
-            Poza = poza;
-        }
+        public int NrReviewuri { get; set; }
     }
 }

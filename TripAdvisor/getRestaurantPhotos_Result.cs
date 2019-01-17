@@ -18,10 +18,6 @@ namespace TripAdvisor
         public byte[] Poza { get; set; }
         public Nullable<System.DateTime> Data { get; set; }
 
-        public getRestaurantPhotos_Result()
-        {
-
-        }
         public getRestaurantPhotos_Result(string nume, string prenume, byte[] poza, Nullable<System.DateTime> data)
         {
             Nume = nume;

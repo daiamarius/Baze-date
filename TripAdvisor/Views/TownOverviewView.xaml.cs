@@ -26,7 +26,7 @@ namespace TripAdvisor.Views
             Textblock_welcome.Text = town;
             using (var db = new TripAdvisorEntities())
             {
-                List<getRestaurants_Result> results = db.getRestaurants(town).ToList();
+                List<getTop3Restaurants_Result> results = db.getTop3Restaurants(town).ToList();
                 Listview_topRestaurants.ItemsSource = results;
             }
         }

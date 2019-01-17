@@ -42,7 +42,7 @@ namespace TripAdvisor
                 bmpi.StreamSource = new MemoryStream(_result.Poza);
                 bmpi.EndInit();
                 Image_imageSlider.Source = bmpi;
-                var firstPhoto = new getRestaurantPhotos_Result("Owner", "", _result.Poza, null);
+                var firstPhoto = new getRestaurantPhotos_Result("Owner","",_result.Poza,null);
                 _imageList.Insert(0, firstPhoto);
                 Textblock_published.Text = "Published by:" + _result.Nume;
             }

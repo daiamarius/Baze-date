@@ -165,5 +165,14 @@ namespace TripAdvisor
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_upgraddiagrams");
         }
+    
+        public virtual ObjectResult<getTop3Restaurants_Result> getTop3Restaurants(string oras)
+        {
+            var orasParameter = oras != null ?
+                new ObjectParameter("Oras", oras) :
+                new ObjectParameter("Oras", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getTop3Restaurants_Result>("getTop3Restaurants", orasParameter);
+        }
     }
 }

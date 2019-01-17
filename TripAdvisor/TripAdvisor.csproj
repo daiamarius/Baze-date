@@ -87,6 +87,9 @@
     <Compile Include="getRestaurants_Result.cs">
       <DependentUpon>TripAdvisor.tt</DependentUpon>
     </Compile>
+    <Compile Include="getTop3Restaurants_Result.cs">
+      <DependentUpon>TripAdvisor.tt</DependentUpon>
+    </Compile>
     <Compile Include="HomeWindow.xaml.cs">
       <DependentUpon>HomeWindow.xaml</DependentUpon>
     </Compile>
