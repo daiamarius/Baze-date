@@ -41,7 +41,7 @@ namespace TripAdvisor.Views
                     //System.Windows.MessageBox.Show(result.ToString());
                     if (result == 1)
                     {
-                        HomeWindow2 hw = new HomeWindow2();
+                        HomeWindow2 hw = HomeWindow2.Instance;
                         hw.Show();
                         //App.Current.MainWindow.Close();
                         Window parentWindow = Window.GetWindow(this);

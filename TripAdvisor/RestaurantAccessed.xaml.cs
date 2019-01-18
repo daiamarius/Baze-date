@@ -27,7 +27,6 @@ namespace TripAdvisor
         public RestaurantAccessed(getRestaurants_Result result)
         {
             InitializeComponent();
-            InitializeComponent();
             _result = result;
             Textblock_title.Text = _result.Nume;
             using (var db = new TripAdvisorEntities())

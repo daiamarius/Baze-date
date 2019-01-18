@@ -165,6 +165,9 @@
     <Compile Include="Views\LoginView.xaml.cs">
       <DependentUpon>LoginView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\RestaurantAccessedView.xaml.cs">
+      <DependentUpon>RestaurantAccessedView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\RestaurantsView.xaml.cs">
       <DependentUpon>RestaurantsView.xaml</DependentUpon>
     </Compile>
@@ -204,6 +207,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\LoginView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\RestaurantAccessedView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

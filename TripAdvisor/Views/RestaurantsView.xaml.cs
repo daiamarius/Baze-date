@@ -39,8 +39,8 @@ namespace TripAdvisor.Views
         private void listView_restaurants_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             int index=listView_restaurants.SelectedIndex;
-            Window accessed = new RestaurantAccessed(_results[index]);
-            accessed.Show();
+            var usc = new RestaurantAccessedView(_results[index]);
+            HomeWindow2.Instance.GridMain.Children.Add(usc);
         }
 
         private void listView_food_SelectionChanged(object sender, SelectionChangedEventArgs e)

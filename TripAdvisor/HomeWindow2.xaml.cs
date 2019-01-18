@@ -20,9 +20,21 @@ namespace TripAdvisor
     /// </summary>
     public partial class HomeWindow2 : Window
     {
+        private static HomeWindow2 _instance;
         public string _orasCurent;
         public List<string> _orase;
-        public HomeWindow2()
+
+        public static HomeWindow2 Instance
+        {
+            get
+            {
+                if (_instance == null)
+                    _instance = new HomeWindow2();
+                return _instance;
+            }
+        }
+
+        private HomeWindow2()
         {
             InitializeComponent();
             using (var context = new TripAdvisorEntities())
