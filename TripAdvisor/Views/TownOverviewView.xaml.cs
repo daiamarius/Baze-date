@@ -22,9 +22,9 @@ namespace TripAdvisor.Views
         public TownOverviewView(string town)
         {
             InitializeComponent();
-            Textblock_welcome.Text = town;
             using (var db = new TripAdvisorEntities())
             {
+                Textblock_bestRestaurants.DataContext = town;
                 _results = db.getTop3Restaurants(town).ToList();
                 Listview_topRestaurants.ItemsSource = _results;
             }

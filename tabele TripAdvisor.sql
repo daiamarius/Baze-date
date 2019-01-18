@@ -56,7 +56,8 @@ Denumire varchar(255) unique not null
 Create table Preparate
 (
 PreparatID int primary key identity(1000,1),
-Denumire varchar(255) unique not null
+Denumire varchar(255) unique not null,
+Poza image not null
 )
 Create table Restaurante
 (

@@ -108,6 +108,7 @@ warning 6002: The table/view 'TripAdvisor.dbo.PozeRestaurante' does not have a p
           </Key>
           <Property Name="PreparatID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Denumire" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Poza" Type="image" Nullable="false" />
         </EntityType>
         <EntityType Name="RecenziiActivitati">
           <Key>
@@ -455,6 +456,12 @@ warning 6002: The table/view 'TripAdvisor.dbo.Rezervari' does not have a primary
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="getPreparate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Oras" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="getRestaurantMenu" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="restId" Type="int" Mode="In" />
+        </Function>
         <Function Name="getRestaurantPhotos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="restaurantID" Type="int" Mode="In" />
         </Function>
@@ -674,6 +681,7 @@ warning 6002: The table/view 'TripAdvisor.dbo.Rezervari' does not have a primary
           </Key>
           <Property Name="PreparatID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Denumire" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Poza" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
           <NavigationProperty Name="Restaurante" Relationship="Self.Meniu" FromRole="Preparate" ToRole="Restaurante" />
         </EntityType>
         <EntityType Name="RecenziiActivitati">
@@ -1162,6 +1170,12 @@ warning 6002: The table/view 'TripAdvisor.dbo.Rezervari' does not have a primary
             <End Role="Preparate" EntitySet="Preparate" />
             <End Role="Restaurante" EntitySet="Restaurante" />
           </AssociationSet>
+          <FunctionImport Name="getPreparate" ReturnType="Collection(TripAdvisorModel.getPreparate_Result)">
+            <Parameter Name="Oras" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="getRestaurantMenu" ReturnType="Collection(String)">
+            <Parameter Name="restId" Mode="In" Type="Int32" />
+          </FunctionImport>
           <FunctionImport Name="getRestaurantPhotos" ReturnType="Collection(TripAdvisorModel.getRestaurantPhotos_Result)">
             <Parameter Name="restaurantID" Mode="In" Type="Int32" />
           </FunctionImport>
@@ -1172,6 +1186,11 @@ warning 6002: The table/view 'TripAdvisor.dbo.Rezervari' does not have a primary
             <Parameter Name="Oras" Mode="In" Type="String" />
           </FunctionImport>
         </EntityContainer>
+        <ComplexType Name="getPreparate_Result">
+          <Property Type="Binary" Name="Poza" Nullable="true" />
+          <Property Type="String" Name="Denumire" Nullable="false" MaxLength="255" />
+          <Property Type="Int32" Name="KindNumber" Nullable="true" />
+        </ComplexType>
         <ComplexType Name="getRestaurantPhotos_Result">
           <Property Type="String" Name="Nume" Nullable="false" MaxLength="255" />
           <Property Type="String" Name="Prenume" Nullable="false" MaxLength="255" />
@@ -1185,6 +1204,7 @@ warning 6002: The table/view 'TripAdvisor.dbo.Rezervari' does not have a primary
           <Property Type="Binary" Name="Poza" Nullable="true" />
           <Property Type="Double" Name="UserReview" Nullable="false" />
           <Property Type="Double" Name="UserPricing" Nullable="false" />
+          <Property Type="Int32" Name="NrReviewuri" Nullable="false" />
         </ComplexType>
         <ComplexType Name="getTop3Restaurants_Result">
           <Property Type="Int32" Name="RestaurantID" Nullable="false" />
@@ -1258,6 +1278,7 @@ warning 6002: The table/view 'TripAdvisor.dbo.Rezervari' does not have a primary
               <MappingFragment StoreEntitySet="Preparate">
                 <ScalarProperty Name="PreparatID" ColumnName="PreparatID" />
                 <ScalarProperty Name="Denumire" ColumnName="Denumire" />
+                <ScalarProperty Name="Poza" ColumnName="Poza" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1382,6 +1403,16 @@ warning 6002: The table/view 'TripAdvisor.dbo.Rezervari' does not have a primary
               <ScalarProperty Name="RestaurantID" ColumnName="RestaurantID" />
             </EndProperty>
           </AssociationSetMapping>
+          <FunctionImportMapping FunctionImportName="getPreparate" FunctionName="TripAdvisorModel.Store.getPreparate">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TripAdvisorModel.getPreparate_Result">
+                <ScalarProperty Name="Poza" ColumnName="Poza" />
+                <ScalarProperty Name="Denumire" ColumnName="Denumire" />
+                <ScalarProperty Name="KindNumber" ColumnName="KindNumber" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="getRestaurantMenu" FunctionName="TripAdvisorModel.Store.getRestaurantMenu" />
           <FunctionImportMapping FunctionImportName="getRestaurantPhotos" FunctionName="TripAdvisorModel.Store.getRestaurantPhotos">
             <ResultMapping>
               <ComplexTypeMapping TypeName="TripAdvisorModel.getRestaurantPhotos_Result">
@@ -1401,6 +1432,7 @@ warning 6002: The table/view 'TripAdvisor.dbo.Rezervari' does not have a primary
                 <ScalarProperty Name="Poza" ColumnName="Poza" />
                 <ScalarProperty Name="UserReview" ColumnName="UserReview" />
                 <ScalarProperty Name="UserPricing" ColumnName="UserPricing" />
+                <ScalarProperty Name="NrReviewuri" ColumnName="NrReviewuri" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

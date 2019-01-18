@@ -51,54 +51,21 @@ SELECT '112','11','La Terazza','0724 317 047','Str. Dr. Carol Davila, nr. 56A(Co
 SET IDENTITY_INSERT dbo.Restaurante OFF
 
 SET IDENTITY_INSERT dbo.Preparate ON
-INSERT INTO Preparate(PreparatID, Denumire)
-VALUES               (1, 'Italian'),
-					 (2, 'Mediteranean'),
-					 (3, 'Greek'),
-					 (4, 'Romanian'),
-					 (5, 'Fast Food'),
-					 (6, 'Vegan Options'),
-					 (7, 'Chinese'),
-					 (8, 'Pizza'),
-					 (9, 'Vegetarian Friendly'),
-					 (10, 'European'),
-					 (11, 'Grill'),
-					 (12, 'Barbecue'),
-					 (13, 'Steakhouse'),
-					 (14, 'Gluten Free'),
-					 (15, 'Asian'),
-					 (16, 'Armenian'),
-					 (17, 'Cuban'),
-					 (18, 'Ethiopian'),
-					 (19, 'French'),
-					 (20, 'Fujian'),
-					 (21, 'Egyptean'),
-					 (22, 'Sushi'),
-					 (23, 'Thai'),
-					 (24, 'Pub'),
-					 (25, 'Street Food'),
-					 (26, 'Traditional')
+INSERT INTO Preparate(PreparatID, Denumire,Poza)
+Select  '1', 'Pizza', BulkColumn FROM OPENROWSET (BULK 'D:\TripAdvisor\Poze\pizza.jpg', SINGLE_BLOB )as Poza
+INSERT INTO Preparate(PreparatID, Denumire,Poza)
+Select  '2', 'Burgers', BulkColumn FROM OPENROWSET (BULK 'D:\TripAdvisor\Poze\burger.jpg', SINGLE_BLOB )as Poza
+INSERT INTO Preparate(PreparatID, Denumire,Poza)
+Select  '3', 'Spaghetti', BulkColumn FROM OPENROWSET (BULK 'D:\TripAdvisor\Poze\paste.jpg', SINGLE_BLOB )as Poza
+INSERT INTO Preparate(PreparatID, Denumire,Poza)
+Select  '4', 'Fish', BulkColumn FROM OPENROWSET (BULK 'D:\TripAdvisor\Poze\peste.jpg', SINGLE_BLOB )as Poza
+INSERT INTO Preparate(PreparatID, Denumire,Poza)
+Select  '5', 'Traditional', BulkColumn FROM OPENROWSET (BULK 'D:\TripAdvisor\Poze\traditional.jpeg', SINGLE_BLOB )as Poza
 SET IDENTITY_INSERT dbo.Preparate OFF
 
 
 INSERT INTO Meniu(RestaurantID, PreparatID)
-VALUES           (111, 4),
-				 (111, 5),
-				 (111, 8),
-				 (111, 9),
-				 (122, 4),
-				 (122, 5),
-				 (122, 6),
-				 (122, 8),
-				 (641, 1),
-				 (641, 8),
-				 (641, 11),
-				 (641, 12),
-				 (112, 1),
-				 (112, 2),
-				 (112, 3),
-				 (112, 9),
-				 (121, 12)
+VALUES (111,1),(111,5),(111,3),(113,1),(113,2),(112,4),(112,5)
 
 
 SET IDENTITY_INSERT dbo.Utilizatori ON

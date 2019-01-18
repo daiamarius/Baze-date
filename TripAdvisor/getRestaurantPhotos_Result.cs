@@ -17,7 +17,6 @@ namespace TripAdvisor
         public string Prenume { get; set; }
         public byte[] Poza { get; set; }
         public Nullable<System.DateTime> Data { get; set; }
-
         getRestaurantPhotos_Result()
         {
 

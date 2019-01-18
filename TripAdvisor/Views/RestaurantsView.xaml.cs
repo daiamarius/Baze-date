@@ -25,10 +25,13 @@ namespace TripAdvisor.Views
             InitializeComponent();
             if(town.Count()!=0)
             {
+                Textblock_bestRestaurants.DataContext = town;
                 using (var db = new TripAdvisorEntities())
                 {
                     _results = db.getRestaurants(town).ToList();
+                    var foodTypes = db.getPreparate(town).ToList();
                     listView_restaurants.ItemsSource = _results;
+                    listView_food.ItemsSource = foodTypes;
                 }
             }
         }
@@ -40,7 +43,7 @@ namespace TripAdvisor.Views
             accessed.Show();
         }
 
-        private void listView_restaurants_Scroll(object sender, System.Windows.Controls.Primitives.ScrollEventArgs e)
+        private void listView_food_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
         }

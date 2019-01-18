@@ -44,6 +44,24 @@ namespace TripAdvisor
         public virtual DbSet<PozeRestaurante> PozeRestaurante { get; set; }
         public virtual DbSet<Rezervari> Rezervari { get; set; }
     
+        public virtual ObjectResult<getPreparate_Result> getPreparate(string oras)
+        {
+            var orasParameter = oras != null ?
+                new ObjectParameter("Oras", oras) :
+                new ObjectParameter("Oras", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getPreparate_Result>("getPreparate", orasParameter);
+        }
+    
+        public virtual ObjectResult<string> getRestaurantMenu(Nullable<int> restId)
+        {
+            var restIdParameter = restId.HasValue ?
+                new ObjectParameter("restId", restId) :
+                new ObjectParameter("restId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("getRestaurantMenu", restIdParameter);
+        }
+    
         public virtual ObjectResult<getRestaurantPhotos_Result> getRestaurantPhotos(Nullable<int> restaurantID)
         {
             var restaurantIDParameter = restaurantID.HasValue ?

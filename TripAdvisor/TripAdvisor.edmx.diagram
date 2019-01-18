@@ -4,23 +4,23 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="4692c993cc164da7bbc77880d342e83f" Name="Diagram1">
-        <EntityTypeShape EntityType="TripAdvisorModel.Camere" Width="1.5" PointX="6.75" PointY="4.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="TripAdvisorModel.CategoriiObiective" Width="1.5" PointX="1.5" PointY="22.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="TripAdvisorModel.Cazare" Width="1.5" PointX="3.75" PointY="4" IsExpanded="true" />
-        <EntityTypeShape EntityType="TripAdvisorModel.Obiective" Width="1.5" PointX="0.75" PointY="16.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="TripAdvisorModel.Orase" Width="1.5" PointX="1.5" PointY="3.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="TripAdvisorModel.Preparate" Width="1.5" PointX="1.5" PointY="20.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="TripAdvisorModel.RecenziiActivitati" Width="1.5" PointX="3" PointY="12.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="TripAdvisorModel.RecenziiHoteluri" Width="1.5" PointX="6" PointY="12.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="TripAdvisorModel.RecenziiRestaurante" Width="1.5" PointX="3" PointY="8.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="TripAdvisorModel.Restaurante" Width="1.5" PointX="0.75" PointY="7.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="TripAdvisorModel.Tari" Width="1.5" PointX="1.5" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TripAdvisorModel.Utilizatori" Width="1.5" PointX="0.75" PointY="11.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="TripAdvisorModel.PozeActivitati" Width="1.5" PointX="3" PointY="16.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="TripAdvisorModel.PozeHotel" Width="1.5" PointX="6" PointY="8.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="TripAdvisorModel.PozeRestaurante" Width="1.5" PointX="6" PointY="16.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="TripAdvisorModel.Rezervari" Width="1.5" PointX="9" PointY="12.5" IsExpanded="true" />
+      <Diagram DiagramId="d94091d11a7b4085a1d1f25563f533d4" Name="Diagram1">
+        <EntityTypeShape EntityType="TripAdvisorModel.Camere" Width="1.5" PointX="6.75" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="TripAdvisorModel.CategoriiObiective" Width="1.5" PointX="1.5" PointY="28.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="TripAdvisorModel.Cazare" Width="1.5" PointX="3.75" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="TripAdvisorModel.Obiective" Width="1.5" PointX="0.75" PointY="25.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="TripAdvisorModel.Orase" Width="1.5" PointX="1.5" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="TripAdvisorModel.Preparate" Width="1.5" PointX="1.5" PointY="21.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="TripAdvisorModel.RecenziiActivitati" Width="1.5" PointX="3" PointY="11.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="TripAdvisorModel.RecenziiHoteluri" Width="1.5" PointX="6" PointY="11.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="TripAdvisorModel.RecenziiRestaurante" Width="1.5" PointX="3" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="TripAdvisorModel.Restaurante" Width="1.5" PointX="0.75" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TripAdvisorModel.Tari" Width="1.5" PointX="1.5" PointY="18.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TripAdvisorModel.Utilizatori" Width="1.5" PointX="0.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="TripAdvisorModel.PozeActivitati" Width="1.5" PointX="3" PointY="15.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TripAdvisorModel.PozeHotel" Width="1.5" PointX="6" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TripAdvisorModel.PozeRestaurante" Width="1.5" PointX="6" PointY="15.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TripAdvisorModel.Rezervari" Width="1.5" PointX="9" PointY="11.375" IsExpanded="true" />
         <AssociationConnector Association="TripAdvisorModel.FK__Camere__CazareID__5AEE82B9" ManuallyRouted="false" />
         <AssociationConnector Association="TripAdvisorModel.FK__Rezervari__Camer__5DCAEF64" ManuallyRouted="false" />
         <AssociationConnector Association="TripAdvisorModel.FK__Obiective__Categ__5441852A" ManuallyRouted="false" />

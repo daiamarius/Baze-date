@@ -22,6 +22,7 @@ namespace TripAdvisor
     
         public int PreparatID { get; set; }
         public string Denumire { get; set; }
+        public byte[] Poza { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Restaurante> Restaurante { get; set; }

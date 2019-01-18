@@ -81,6 +81,9 @@
     <Compile Include="Cazare.cs">
       <DependentUpon>TripAdvisor.tt</DependentUpon>
     </Compile>
+    <Compile Include="getPreparate_Result.cs">
+      <DependentUpon>TripAdvisor.tt</DependentUpon>
+    </Compile>
     <Compile Include="getRestaurantPhotos_Result.cs">
       <DependentUpon>TripAdvisor.tt</DependentUpon>
     </Compile>
@@ -89,9 +92,6 @@
     </Compile>
     <Compile Include="getTop3Restaurants_Result.cs">
       <DependentUpon>TripAdvisor.tt</DependentUpon>
-    </Compile>
-    <Compile Include="HomeWindow.xaml.cs">
-      <DependentUpon>HomeWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="HomeWindow2.xaml.cs">
       <DependentUpon>HomeWindow2.xaml</DependentUpon>
@@ -153,10 +153,6 @@
     <Compile Include="Utilizatori.cs">
       <DependentUpon>TripAdvisor.tt</DependentUpon>
     </Compile>
-    <Compile Include="ViewModels\CreateAccountViewModel.cs" />
-    <Compile Include="ViewModels\LoginViewModel.cs" />
-    <Compile Include="ViewModels\RestaurantsViewModel.cs" />
-    <Compile Include="ViewModels\SearchViewModel.cs" />
     <Compile Include="Views\ActivitiesView.xaml.cs">
       <DependentUpon>ActivitiesView.xaml</DependentUpon>
     </Compile>
@@ -175,10 +171,6 @@
     <Compile Include="Views\TownOverviewView.xaml.cs">
       <DependentUpon>TownOverviewView.xaml</DependentUpon>
     </Compile>
-    <Page Include="HomeWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="HomeWindow2.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -265,10 +257,6 @@
     <Resource Include="Resources\tripadvisor_logo.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Resources\activities_ico.png" />
-    <Resource Include="Resources\hotel_ico.png" />
-    <Resource Include="Resources\hotel_ico2.png" />
-    <Resource Include="Resources\restaurants_ico.png" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
