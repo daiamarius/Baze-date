@@ -1,5 +1,16 @@
-Create database proiectBD
-use [proiectBD]
+
+/*in caz de drop*/
+USE master;
+GO
+ALTER DATABASE TripAdvisor
+SET SINGLE_USER 
+WITH ROLLBACK IMMEDIATE;
+GO
+DROP DATABASE TripAdvisor
+--create prima oara
+Create database TripAdvisor
+--pe urma tabelele
+use [TripAdvisor]
 GO
 Create table Utilizatori
 (
@@ -29,6 +40,7 @@ Create table Cazare
 CazareID int primary key identity(1000,1),
 OrasID int foreign key references Orase(OrasID) not null,
 Nume varchar(255) not null,
+Adresa varchar(5000),
 Stele int not null,
 NrTelefon varchar(255) unique,
 Email varchar(255) unique,
@@ -53,7 +65,8 @@ OrasID int foreign key references Orase(OrasID) not null,
 Nume varchar(255) not null,
 NumarTelefon varchar(255) not null,
 Adresa varchar(255) not null,
-Program varchar(255)
+Program varchar(255),
+Poza image
 )
 Create table Meniu
 (
@@ -80,6 +93,7 @@ Create table Camere
 (
 CameraID int primary key identity(1000,1),
 CazareID int foreign key references Cazare(CazareID) not null,
+Adresa varchar(5000),
 NumarPaturi int not null,
 PretPerNoapte int not null
 )

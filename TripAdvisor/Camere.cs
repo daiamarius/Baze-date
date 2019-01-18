@@ -22,6 +22,7 @@ namespace TripAdvisor
     
         public int CameraID { get; set; }
         public int CazareID { get; set; }
+        public string Adresa { get; set; }
         public int NumarPaturi { get; set; }
         public int PretPerNoapte { get; set; }
     

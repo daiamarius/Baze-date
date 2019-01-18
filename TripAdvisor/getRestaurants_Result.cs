@@ -19,11 +19,5 @@ namespace TripAdvisor
         public byte[] Poza { get; set; }
         public double UserReview { get; set; }
         public double UserPricing { get; set; }
-
-        getRestaurants_Result(string nume,byte[] poza)
-        {
-            Nume = nume;
-            Poza = poza;
-        }
     }
 }

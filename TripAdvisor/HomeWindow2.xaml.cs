@@ -107,12 +107,8 @@ namespace TripAdvisor
             switch (((ListViewItem)((ListView)sender).SelectedItem).Name)
             {
                 case "ItemRestaurants":
-                    using (var db = new TripAdvisorEntities())
-                    {
-                        List<getRestaurants_Result> results = db.getRestaurants("Bucharest").ToList();
-                        usc = new RestaurantsView(results);
-                        GridMain.Children.Add(usc);
-                    }
+                    usc = new RestaurantsView(Textbox_Town.Text);
+                     GridMain.Children.Add(usc);
                     break;
                 case "ItemAtivities":
                     usc = new ActivitiesView();

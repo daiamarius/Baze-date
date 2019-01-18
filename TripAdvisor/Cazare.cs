@@ -25,11 +25,11 @@ namespace TripAdvisor
         public int CazareID { get; set; }
         public int OrasID { get; set; }
         public string Nume { get; set; }
+        public string Adresa { get; set; }
         public int Stele { get; set; }
         public string NrTelefon { get; set; }
         public string Email { get; set; }
         public byte[] Poza { get; set; }
-        public string Adresa { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Camere> Camere { get; set; }

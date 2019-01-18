@@ -20,11 +20,17 @@ namespace TripAdvisor.Views
     public partial class RestaurantsView : UserControl
     {
         private List<getRestaurants_Result> _results;
-        public RestaurantsView(List<getRestaurants_Result> results)
+        public RestaurantsView(string town)
         {
-            _results = results;
             InitializeComponent();
-            listView_restaurants.ItemsSource = _results;
+            if(town.Count()!=0)
+            {
+                using (var db = new TripAdvisorEntities())
+                {
+                    _results = db.getRestaurants(town).ToList();
+                    listView_restaurants.ItemsSource = _results;
+                }
+            }
         }
 
         private void listView_restaurants_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -32,6 +38,11 @@ namespace TripAdvisor.Views
             int index=listView_restaurants.SelectedIndex;
             Window accessed = new RestaurantAccessed(_results[index]);
             accessed.Show();
+        }
+
+        private void listView_restaurants_Scroll(object sender, System.Windows.Controls.Primitives.ScrollEventArgs e)
+        {
+
         }
     }
 }

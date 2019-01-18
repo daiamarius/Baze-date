@@ -132,15 +132,6 @@
     <Compile Include="Rezervari.cs">
       <DependentUpon>TripAdvisor.tt</DependentUpon>
     </Compile>
-    <Compile Include="sp_helpdiagramdefinition_Result.cs">
-      <DependentUpon>TripAdvisor.tt</DependentUpon>
-    </Compile>
-    <Compile Include="sp_helpdiagrams_Result.cs">
-      <DependentUpon>TripAdvisor.tt</DependentUpon>
-    </Compile>
-    <Compile Include="sysdiagrams.cs">
-      <DependentUpon>TripAdvisor.tt</DependentUpon>
-    </Compile>
     <Compile Include="Tari.cs">
       <DependentUpon>TripAdvisor.tt</DependentUpon>
     </Compile>
@@ -290,6 +281,8 @@
     <Resource Include="Resources\rightarrow.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="TripAdvisor.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>TripAdvisor.edmx</DependentUpon>

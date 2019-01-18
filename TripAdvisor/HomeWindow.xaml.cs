@@ -97,12 +97,7 @@ namespace TripAdvisor
 
         private void Button_restaurants_Click(object sender, RoutedEventArgs e)
         {
-            using (var db = new TripAdvisorEntities())
-            {
-                List<getRestaurants_Result> results = db.getRestaurants(Textbox_Town.Text).ToList();
-                var view = new RestaurantsView(results);
-                DataContext = view;
-            }
+            var view = new RestaurantsView(Textbox_Town.Text);
         }
 
         void HomeWindow_Closing(object sender, CancelEventArgs e)

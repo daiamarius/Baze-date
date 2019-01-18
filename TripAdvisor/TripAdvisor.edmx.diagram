@@ -4,8 +4,8 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="5461e7ee972f481896d283c826b0a56e" Name="Diagram1">
-        <EntityTypeShape EntityType="TripAdvisorModel.Camere" Width="1.5" PointX="6.75" PointY="5.625" IsExpanded="true" />
+      <Diagram DiagramId="4692c993cc164da7bbc77880d342e83f" Name="Diagram1">
+        <EntityTypeShape EntityType="TripAdvisorModel.Camere" Width="1.5" PointX="6.75" PointY="4.5" IsExpanded="true" />
         <EntityTypeShape EntityType="TripAdvisorModel.CategoriiObiective" Width="1.5" PointX="1.5" PointY="22.875" IsExpanded="true" />
         <EntityTypeShape EntityType="TripAdvisorModel.Cazare" Width="1.5" PointX="3.75" PointY="4" IsExpanded="true" />
         <EntityTypeShape EntityType="TripAdvisorModel.Obiective" Width="1.5" PointX="0.75" PointY="16.375" IsExpanded="true" />
@@ -15,7 +15,6 @@
         <EntityTypeShape EntityType="TripAdvisorModel.RecenziiHoteluri" Width="1.5" PointX="6" PointY="12.375" IsExpanded="true" />
         <EntityTypeShape EntityType="TripAdvisorModel.RecenziiRestaurante" Width="1.5" PointX="3" PointY="8.375" IsExpanded="true" />
         <EntityTypeShape EntityType="TripAdvisorModel.Restaurante" Width="1.5" PointX="0.75" PointY="7.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="TripAdvisorModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="1.875" IsExpanded="true" />
         <EntityTypeShape EntityType="TripAdvisorModel.Tari" Width="1.5" PointX="1.5" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="TripAdvisorModel.Utilizatori" Width="1.5" PointX="0.75" PointY="11.875" IsExpanded="true" />
         <EntityTypeShape EntityType="TripAdvisorModel.PozeActivitati" Width="1.5" PointX="3" PointY="16.625" IsExpanded="true" />
@@ -27,16 +26,16 @@
         <AssociationConnector Association="TripAdvisorModel.FK__Obiective__Categ__5441852A" ManuallyRouted="false" />
         <AssociationConnector Association="TripAdvisorModel.FK__Cazare__OrasID__440B1D61" ManuallyRouted="false" />
         <AssociationConnector Association="TripAdvisorModel.FK__PozeHotel__Cazar__60A75C0F" ManuallyRouted="false" />
-        <AssociationConnector Association="TripAdvisorModel.FK__RecenziiH__Cazar__74AE54BC" ManuallyRouted="false" />
+        <AssociationConnector Association="TripAdvisorModel.FK__RecenziiH__Cazar__6A30C649" ManuallyRouted="false" />
         <AssociationConnector Association="TripAdvisorModel.FK__Obiective__OrasI__534D60F1" ManuallyRouted="false" />
         <AssociationConnector Association="TripAdvisorModel.FK__PozeActiv__Obiec__6477ECF3" ManuallyRouted="false" />
-        <AssociationConnector Association="TripAdvisorModel.FK__RecenziiA__Obiec__7E37BEF6" ManuallyRouted="false" />
+        <AssociationConnector Association="TripAdvisorModel.FK__RecenziiA__Obiec__73BA3083" ManuallyRouted="false" />
         <AssociationConnector Association="TripAdvisorModel.FK__Orase__TaraID__3F466844" ManuallyRouted="false" />
         <AssociationConnector Association="TripAdvisorModel.FK__Restauran__OrasI__4CA06362" ManuallyRouted="false" />
-        <AssociationConnector Association="TripAdvisorModel.FK__RecenziiA__UserI__7D439ABD" ManuallyRouted="false" />
-        <AssociationConnector Association="TripAdvisorModel.FK__RecenziiH__UserI__73BA3083" ManuallyRouted="false" />
-        <AssociationConnector Association="TripAdvisorModel.FK__RecenziiR__Resta__797309D9" ManuallyRouted="false" />
-        <AssociationConnector Association="TripAdvisorModel.FK__RecenziiR__UserI__787EE5A0" ManuallyRouted="false" />
+        <AssociationConnector Association="TripAdvisorModel.FK__RecenziiA__UserI__72C60C4A" ManuallyRouted="false" />
+        <AssociationConnector Association="TripAdvisorModel.FK__RecenziiH__UserI__693CA210" ManuallyRouted="false" />
+        <AssociationConnector Association="TripAdvisorModel.FK__RecenziiR__Resta__6EF57B66" ManuallyRouted="false" />
+        <AssociationConnector Association="TripAdvisorModel.FK__RecenziiR__UserI__6E01572D" ManuallyRouted="false" />
         <AssociationConnector Association="TripAdvisorModel.FK__PozeResta__Resta__5629CD9C" ManuallyRouted="false" />
         <AssociationConnector Association="TripAdvisorModel.FK__PozeActiv__Utili__656C112C" ManuallyRouted="false" />
         <AssociationConnector Association="TripAdvisorModel.FK__PozeHotel__Utili__619B8048" ManuallyRouted="false" />

@@ -15,20 +15,24 @@ using System.Windows.Shapes;
 
 namespace TripAdvisor.Views
 {
-    /// <summary>
-    /// Interaction logic for TownOverviewView.xaml
-    /// </summary>
     public partial class TownOverviewView : UserControl
     {
+        private List<getTop3Restaurants_Result> _results;
+
         public TownOverviewView(string town)
         {
             InitializeComponent();
             Textblock_welcome.Text = town;
             using (var db = new TripAdvisorEntities())
             {
-                List<getTop3Restaurants_Result> results = db.getTop3Restaurants(town).ToList();
-                Listview_topRestaurants.ItemsSource = results;
+                _results = db.getTop3Restaurants(town).ToList();
+                Listview_topRestaurants.ItemsSource = _results;
             }
+        }
+
+        private void Listview_topRestaurants_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
         }
     }
 }

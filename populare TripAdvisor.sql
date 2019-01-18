@@ -1,7 +1,4 @@
-﻿--adaugare coloana Adresa in tabelul Cazare
-ALTER TABLE Cazare 
-ADD Adresa varchar(5000) not null
-
+﻿use TripAdvisor
 
 SET IDENTITY_INSERT dbo.Tari ON
 INSERT INTO Tari(TaraID, Nume) 
@@ -39,15 +36,18 @@ VALUES			  ( 11, 'Bucharest',	1),
 				  ( 64, 'Florence',     6)
 SET IDENTITY_INSERT dbo.Orase OFF
 
-
 SET IDENTITY_INSERT dbo.Restaurante ON
 INSERT INTO Restaurante(RestaurantID, OrasID, Nume, NumarTelefon, Adresa, Program)
-VALUES                 (111, 11, 'Hanul Berarilor',			'0755 243 938',         'Str. Poenaru Bordea, nr. 2',                ' Deschis zilnic intre orele 10:30-02:00'  ),
-                       (112, 11, 'La Terazza'	  ,			'0724 317 047',         'Str. Dr. Carol Davila, nr. 56A(Cotroceni)', 'Deschis zilnic intre orele 09:00-01:00'),
-					   (121, 12, 'House Georgius Krauss',	'0763 986 132',         'Batalionului nr.11',                        'Deschis Luni-Sambata intre orele 08:30-22:30, Duminica intre orele 10:30-23:30'),
+VALUES                 (121, 12, 'House Georgius Krauss',	'0763 986 132',         'Batalionului nr.11',                        'Deschis Luni-Sambata intre orele 08:30-22:30, Duminica intre orele 10:30-23:30'),
 					   (122, 12, 'Casa cu Cerb',			'0274 512 789',         'Strada Scolii, nr. 1',						 'Deschis zilnic intre orele 10:30-23:30'),
 					   (611, 61, 'Ristorante Pizzeria Pasquino', '+39 06 689 3043', 'Pizzeria Pasquino 1, Rome Italy',			 'Deschs zilnic intre orele 09:00-21:00'),
 					   (641, 64, 'Essenziale',               '+39 02 367 0987',      'Piazza di Cestello 3R, 50124, Florence, Italy','Deschis zilnic intre orele 09:00-20:30')
+insert into Restaurante(RestaurantID,OrasID,Nume,NumarTelefon,Adresa,Program,Poza)
+SELECT '113','11','Vivo burgers','0777777777','Strada Soarelui 139',' Deschis zilnic intre orele 10:30-02:00',BulkColumn FROM OPENROWSET (BULK 'D:\TripAdvisor\Poze\restaurant.jpg', SINGLE_BLOB )as Poza
+insert into Restaurante(RestaurantID,OrasID,Nume,NumarTelefon,Adresa,Program,Poza)
+SELECT '111','11','Hanul Berarilor','0755 243 938','Str. Poenaru Bordea, nr. 2','Deschis zilnic intre orele 10:30-02:00',BulkColumn FROM OPENROWSET (BULK 'D:\TripAdvisor\Poze\hanul_berarilor.jpg', SINGLE_BLOB )as Poza
+insert into Restaurante(RestaurantID,OrasID,Nume,NumarTelefon,Adresa,Program,Poza)
+SELECT '112','11','La Terazza','0724 317 047','Str. Dr. Carol Davila, nr. 56A(Cotroceni)','Deschis zilnic intre orele 09:00-01:00',BulkColumn FROM OPENROWSET (BULK 'D:\TripAdvisor\Poze\la_terazza.jpg', SINGLE_BLOB )as Poza
 SET IDENTITY_INSERT dbo.Restaurante OFF
 
 SET IDENTITY_INSERT dbo.Preparate ON
@@ -103,13 +103,13 @@ VALUES           (111, 4),
 
 SET IDENTITY_INSERT dbo.Utilizatori ON
 INSERT INTO Utilizatori(UserID, Nume, Prenume, Parola, NrTelefon, Email, Poza)
-SELECT '1','Timis','Diana','Parola123','0733705260','diana.timis97@gmail.com', BulkColumn FROM OPENROWSET(BULK 'D:\Anul3\Anul3sem1\BazeDeDate\Tema\Poze\diana.jpg', SINGLE_BLOB ) as Poza 
+SELECT '1','Timis','Diana','123','0733705260','diana.timis97@gmail.com', BulkColumn FROM OPENROWSET(BULK 'D:\TripAdvisor\Poze\diana.jpg', SINGLE_BLOB ) as Poza 
 
 INSERT INTO Utilizatori(UserID, Nume, Prenume, Parola, NrTelefon, Email, Poza)
-SELECT '2', 'Mota', 'Alexandra', 'Parola123', '0768543672', 'mota.alexandra@gmail.com', BulkColumn FROM OPENROWSET(BULK 'D:\Anul3\Anul3sem1\BazeDeDate\Tema\Poze\alexandra.jpg', SINGLE_BLOB) as Poza
+SELECT '2', 'Mota', 'Alexandra', '123', '0768543672', 'mota.alexandra@gmail.com', BulkColumn FROM OPENROWSET(BULK 'D:\TripAdvisor\Poze\alexandra.jpg', SINGLE_BLOB) as Poza
 
 INSERT INTO Utilizatori(UserID, Nume, Prenume, Parola, NrTelefon, Email, Poza)
-SELECT '3', 'Daia', 'Marius', 'Parola123', '0768543372', 'daia.marius@gmail.com', BulkColumn FROM OPENROWSET(BULK 'D:\Anul3\Anul3sem1\BazeDeDate\Tema\Poze\sica.jpg', SINGLE_BLOB) as Poza
+SELECT '3', 'Daia', 'Marius', '123', '0768543372', 'daia.marius@gmail.com', BulkColumn FROM OPENROWSET(BULK 'D:\TripAdvisor\Poze\sica.jpg', SINGLE_BLOB) as Poza
 
 SET IDENTITY_INSERT dbo.Utilizatori OFF
 
@@ -126,52 +126,52 @@ SET IDENTITY_INSERT dbo.RecenziiRestaurante OFF
 
 
 INSERT INTO PozeRestaurante(RestaurantID, UserID,  Poza)
-SELECT '111','1', BulkColumn FROM OPENROWSET(BULK 'D:\Anul3\Anul3sem1\BazeDeDate\Tema\Poze\hanulberarilor.jpg', SINGLE_BLOB ) as Poza
+SELECT '111','1', BulkColumn FROM OPENROWSET(BULK 'D:\TripAdvisor\Poze\hanulberarilor.jpg', SINGLE_BLOB ) as Poza
 
 INSERT INTO PozeRestaurante(RestaurantID, UserID,  Poza)
-SELECT '122', '2', BulkColumn FROM OPENROWSET (BULK 'D:\Anul3\Anul3sem1\BazeDeDate\Tema\Poze\casacucerb.png', SINGLE_BLOB )as Poza
+SELECT '122', '2', BulkColumn FROM OPENROWSET (BULK 'D:\TripAdvisor\Poze\casacucerb.png', SINGLE_BLOB )as Poza
 
 INSERT INTO PozeRestaurante(RestaurantID, UserID,  Poza)
-SELECT '641', '3', BulkColumn FROM OPENROWSET (BULK 'D:\Anul3\Anul3sem1\BazeDeDate\Tema\Poze\essenziale.png', SINGLE_BLOB )as Poza
+SELECT '641', '3', BulkColumn FROM OPENROWSET (BULK 'D:\TripAdvisor\Poze\essenziale.png', SINGLE_BLOB )as Poza
 
 INSERT INTO PozeRestaurante(RestaurantID, UserID,  Poza)
-SELECT '112', '2', BulkColumn FROM OPENROWSET (BULK 'D:\Anul3\Anul3sem1\BazeDeDate\Tema\Poze\laterrazza.png', SINGLE_BLOB )as Poza
+SELECT '112', '2', BulkColumn FROM OPENROWSET (BULK 'D:\TripAdvisor\Poze\laterrazza.png', SINGLE_BLOB )as Poza
 
 INSERT INTO PozeRestaurante(RestaurantID, UserID,  Poza)
-SELECT '1000', '2', BulkColumn FROM OPENROWSET (BULK 'D:\restaurant1.jpg', SINGLE_BLOB )as Poza
+SELECT '113', '2', BulkColumn FROM OPENROWSET (BULK 'D:\TripAdvisor\Poze\restaurant1.jpg', SINGLE_BLOB )as Poza
 
 INSERT INTO PozeRestaurante(RestaurantID, UserID,  Poza)
-SELECT '1000', '2', BulkColumn FROM OPENROWSET (BULK 'D:\restaurant2.jpg', SINGLE_BLOB )as Poza
+SELECT '113', '2', BulkColumn FROM OPENROWSET (BULK 'D:\TripAdvisor\Poze\restaurant2.jpg', SINGLE_BLOB )as Poza
 
 SET IDENTITY_INSERT dbo.Cazare ON
 INSERT INTO Cazare(CazareId, OrasID, Nume, Stele, NrTelefon, Email, Adresa, Poza)
-SELECT '11', '11', 'Intercontinental', 5, '00 1 877-859-5095', 'hotel.intercontinental@gmail.com','Bulevardul Balcescu Nicolae 4 Bulevardul Nicolae Bălcescu 4, București 010051, Romania +40 21 310 2020, Bucharest 010051 Romania',BulkColumn FROM OPENROWSET (BULK 'D:\Anul3\Anul3sem1\BazeDeDate\Tema\Poze\intercontinental.png', SINGLE_BLOB )as Poza 
+SELECT '11', '11', 'Intercontinental', 5, '00 1 877-859-5095', 'hotel.intercontinental@gmail.com','Bulevardul Balcescu Nicolae 4 Bulevardul Nicolae Bălcescu 4, București 010051, Romania +40 21 310 2020, Bucharest 010051 Romania',BulkColumn FROM OPENROWSET (BULK 'D:\TripAdvisor\Poze\intercontinental.png', SINGLE_BLOB )as Poza 
 
 INSERT INTO Cazare(CazareId, OrasID, Nume, Stele, NrTelefon, Email, Adresa, Poza)
-SELECT '12', '11', 'Grand Hotel Continental', 4, '0758 692 589', 'grand.hotel@gmail.com','Calea Victoriei 56, Bucharest 010083, Romania',  BulkColumn FROM OPENROWSET (BULK 'D:\Anul3\Anul3sem1\BazeDeDate\Tema\Poze\grandhotelcontinental.png', SINGLE_BLOB )as Poza 
+SELECT '12', '11', 'Grand Hotel Continental', 4, '0758 692 589', 'grand.hotel@gmail.com','Calea Victoriei 56, Bucharest 010083, Romania',  BulkColumn FROM OPENROWSET (BULK 'D:\TripAdvisor\Poze\grandhotelcontinental.png', SINGLE_BLOB )as Poza 
 SET IDENTITY_INSERT dbo.Cazare OFF
 
 
 INSERT INTO PozeHotel(CazareId, UtilizatorID, Poza)
-SELECT '11', '1', BulkColumn FROM OPENROWSET (BULK 'D:\Anul3\Anul3sem1\BazeDeDate\Tema\Poze\intercontinentalUtilizator1.png', SINGLE_BLOB )as Poza 
+SELECT '11', '1', BulkColumn FROM OPENROWSET (BULK 'D:\TripAdvisor\Poze\intercontinentalUtilizator1.png', SINGLE_BLOB )as Poza 
 
 INSERT INTO PozeHotel(CazareId, UtilizatorID, Poza)
-SELECT '11', '1', BulkColumn FROM OPENROWSET (BULK 'D:\Anul3\Anul3sem1\BazeDeDate\Tema\Poze\intercontinentalUtilizator11.png', SINGLE_BLOB )as Poza 
+SELECT '11', '1', BulkColumn FROM OPENROWSET (BULK 'D:\TripAdvisor\Poze\intercontinentalUtilizator11.png', SINGLE_BLOB )as Poza 
 
 INSERT INTO PozeHotel(CazareId, UtilizatorID, Poza)
-SELECT '11', '2', BulkColumn FROM OPENROWSET (BULK 'D:\Anul3\Anul3sem1\BazeDeDate\Tema\Poze\intercontinentalUtilizator2.png', SINGLE_BLOB )as Poza 
+SELECT '11', '2', BulkColumn FROM OPENROWSET (BULK 'D:\TripAdvisor\Poze\intercontinentalUtilizator2.png', SINGLE_BLOB )as Poza 
 
 INSERT INTO PozeHotel(CazareId, UtilizatorID, Poza)
-SELECT '11', '3', BulkColumn FROM OPENROWSET (BULK 'D:\Anul3\Anul3sem1\BazeDeDate\Tema\Poze\intercontinentalUtilizator3.png', SINGLE_BLOB )as Poza 
+SELECT '11', '3', BulkColumn FROM OPENROWSET (BULK 'D:\TripAdvisor\Poze\intercontinentalUtilizator3.png', SINGLE_BLOB )as Poza 
 
 INSERT INTO PozeHotel(CazareId, UtilizatorID, Poza)
-SELECT '12', '1', BulkColumn FROM OPENROWSET (BULK 'D:\Anul3\Anul3sem1\BazeDeDate\Tema\Poze\grandhotelcontinentalUtilizator1.png', SINGLE_BLOB )as Poza 
+SELECT '12', '1', BulkColumn FROM OPENROWSET (BULK 'D:\TripAdvisor\Poze\grandhotelcontinentalUtilizator1.png', SINGLE_BLOB )as Poza 
 
 INSERT INTO PozeHotel(CazareId, UtilizatorID, Poza)
-SELECT '12', '2', BulkColumn FROM OPENROWSET (BULK 'D:\Anul3\Anul3sem1\BazeDeDate\Tema\Poze\grandhotelcontinentalUtilizator2.png', SINGLE_BLOB )as Poza 
+SELECT '12', '2', BulkColumn FROM OPENROWSET (BULK 'D:\TripAdvisor\Poze\grandhotelcontinentalUtilizator2.png', SINGLE_BLOB )as Poza 
 
 INSERT INTO PozeHotel(CazareId, UtilizatorID, Poza)
-SELECT '12', '3', BulkColumn FROM OPENROWSET (BULK 'D:\Anul3\Anul3sem1\BazeDeDate\Tema\Poze\grandhotelcontinentalUtilizator3.png', SINGLE_BLOB )as Poza 
+SELECT '12', '3', BulkColumn FROM OPENROWSET (BULK 'D:\TripAdvisor\Poze\grandhotelcontinentalUtilizator3.png', SINGLE_BLOB )as Poza 
 
 SET IDENTITY_INSERT dbo.RecenziiHoteluri ON
 INSERT INTO RecenziiHoteluri(RecenzieID, UserID, CazareID, Stele, Pret, Comentarii)
@@ -215,22 +215,22 @@ SET IDENTITY_INSERT dbo.Obiective OFF
 
 
 INSERT INTO PozeActivitati(obiectivID, UtilizatorID, Poza)
-SELECT '21', '1', BulkColumn FROM OPENROWSET (BULK 'D:\Anul3\Anul3sem1\BazeDeDate\Tema\Poze\TourOfCommunism1.png', SINGLE_BLOB )as Poza 
+SELECT '21', '1', BulkColumn FROM OPENROWSET (BULK 'D:\TripAdvisor\Poze\TourOfCommunism1.png', SINGLE_BLOB )as Poza 
 
 INSERT INTO PozeActivitati(obiectivID, UtilizatorID, Poza)
-SELECT '21', '1', BulkColumn FROM OPENROWSET (BULK 'D:\Anul3\Anul3sem1\BazeDeDate\Tema\Poze\TourOfCommunism2.png', SINGLE_BLOB )as Poza 
+SELECT '21', '1', BulkColumn FROM OPENROWSET (BULK 'D:\TripAdvisor\Poze\TourOfCommunism2.png', SINGLE_BLOB )as Poza 
 
 INSERT INTO PozeActivitati(obiectivID, UtilizatorID, Poza)
-SELECT '21', '1', BulkColumn FROM OPENROWSET (BULK 'D:\Anul3\Anul3sem1\BazeDeDate\Tema\Poze\TourOfCommunism3.png', SINGLE_BLOB )as Poza
+SELECT '21', '1', BulkColumn FROM OPENROWSET (BULK 'D:\TripAdvisor\Poze\TourOfCommunism3.png', SINGLE_BLOB )as Poza
  
 INSERT INTO PozeActivitati(obiectivID, UtilizatorID, Poza)
-SELECT '21', '2', BulkColumn FROM OPENROWSET (BULK 'D:\Anul3\Anul3sem1\BazeDeDate\Tema\Poze\TourOfCommunism4.png', SINGLE_BLOB )as Poza 
+SELECT '21', '2', BulkColumn FROM OPENROWSET (BULK 'D:\TripAdvisor\Poze\TourOfCommunism4.png', SINGLE_BLOB )as Poza 
 
 INSERT INTO PozeActivitati(obiectivID, UtilizatorID, Poza)
-SELECT '22', '2', BulkColumn FROM OPENROWSET (BULK 'D:\Anul3\Anul3sem1\BazeDeDate\Tema\Poze\HalfDayTour.png', SINGLE_BLOB )as Poza 
+SELECT '22', '2', BulkColumn FROM OPENROWSET (BULK 'D:\TripAdvisor\Poze\HalfDayTour.png', SINGLE_BLOB )as Poza 
 
 INSERT INTO PozeActivitati(obiectivID, UtilizatorID, Poza)
-SELECT '141', '2', BulkColumn FROM OPENROWSET (BULK 'D:\Anul3\Anul3sem1\BazeDeDate\Tema\Poze\CastleFullDayTour.png', SINGLE_BLOB )as Poza 
+SELECT '141', '2', BulkColumn FROM OPENROWSET (BULK 'D:\TripAdvisor\Poze\CastleFullDayTour.png', SINGLE_BLOB )as Poza 
 
 SET IDENTITY_INSERT dbo.RecenziiActivitati ON
 INSERT INTO RecenziiActivitati(RecenzieID, UserID, ObiectivID, Stele, Comentarii)
@@ -270,25 +270,3 @@ VALUES (1, 1, '2019-02-20 22:00' , '2019-02-22 10:00' ),
 	   (2, 13, '2019-04-02 18:30', '2019-04-03 12:00' ),
 	   (3, 10, '2019-04-02 17:20', '2019-04-04 08:00' ),
 	   (3, 1, '2019-02-23 12:00',  '2019-02-24 07:30' )
-
-set identity_insert Restaurante on
-insert into Restaurante(OrasID,Nume,NumarTelefon,Adresa,Poza)
-SELECT '11','Vivo burgers','0777777777','Strada Soarelui 139',BulkColumn FROM OPENROWSET (BULK 'D:\restaurant.jpg', SINGLE_BLOB )as Poza
-set identity_insert Restaurante off
-
-select * from  Tari
-select * from Orase 
-select * from Restaurante 
-select * from Preparate
-select * from Utilizatori 
-select * from Cazare
-select * from CategoriiObiective 
-select * from PozeActivitati
-select * from PozeHotel
-select * from PozeRestaurante
-select * from RecenziiActivitati
-select * from RecenziiHoteluri
-select * from RecenziiRestaurante
-select * from Meniu
-select * from Rezervari 
-select * from Camere 

@@ -26,7 +26,8 @@
         <StackPanel Grid.Row="1" Margin="70,0,0,0">
             <TextBlock Text="Top Restaurants in Town:" Foreground="Black"
                        FontFamily="Heebo" FontSize="20" FontWeight="DemiBold"/>
-            <ListView Name="Listview_topRestaurants" ScrollViewer.VerticalScrollBarVisibility="Hidden">
+            <ListView Name="Listview_topRestaurants" ScrollViewer.VerticalScrollBarVisibility="Hidden"
+                      SelectionChanged="Listview_topRestaurants_SelectionChanged">
                 <ListView.ItemsPanel>
                     <ItemsPanelTemplate>
                         <StackPanel Orientation="Horizontal" Height="150"/>
