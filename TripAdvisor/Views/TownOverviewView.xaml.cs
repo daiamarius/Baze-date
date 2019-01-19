@@ -26,6 +26,8 @@ namespace TripAdvisor.Views
             {
                 using (var db = new TripAdvisorEntities())
                 {
+                    Textblock_bestActivities.DataContext = town;
+                    Textblock_bestHotels.DataContext = town;
                     Textblock_bestRestaurants.DataContext = town;
                     _results = db.getTop3Restaurants(town).ToList();
                     Listview_topRestaurants.ItemsSource = _results;

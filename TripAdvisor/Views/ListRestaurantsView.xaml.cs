@@ -42,18 +42,25 @@ namespace TripAdvisor.Views
 
         private void listView_restaurants_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (_foodList.Count() > 0)
-            {
-                int index = listView_restaurants.SelectedIndex;
-                var usc = new RestaurantAccessedView(_foodList[index].RestaurantID);
-                HomeWindow2.Instance.GridMain.Children.Add(usc);
-            }
-            else if(_allList.Count()>0)
-            {
-                int index = listView_restaurants.SelectedIndex;
-                var usc = new RestaurantAccessedView(_allList[index].RestaurantID);
-                HomeWindow2.Instance.GridMain.Children.Add(usc);
-            }
+            if(_foodList != null)
+                if (_foodList.Count() > 0)
+                {
+                    int index = listView_restaurants.SelectedIndex;
+                    var usc = new RestaurantAccessedView(_foodList[index].RestaurantID);
+                    HomeWindow2.Instance.GridMain.Children.Add(usc);
+                }
+            if(_allList != null)
+                if(_allList.Count()>0)
+                {
+                    int index = listView_restaurants.SelectedIndex;
+                    var usc = new RestaurantAccessedView(_allList[index].RestaurantID);
+                    HomeWindow2.Instance.GridMain.Children.Add(usc);
+                }
+        }
+
+        private void Button_back_Click(object sender, RoutedEventArgs e)
+        {
+            (this.Parent as Panel).Children.Remove(this);
         }
     }
 }

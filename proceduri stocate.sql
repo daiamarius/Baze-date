@@ -56,7 +56,7 @@ IF (OBJECT_ID('getRestaurantReviews','P') IS NOT NULL)
 go
 CREATE PROCEDURE getRestaurantReviews @restId int
 AS
-select u.Nume+' '+u.Prenume as Nume,rec.Stele,rec.Pret,rec.Comentarii,rec.Data
+select u.Nume+' '+u.Prenume as Nume,rec.Stele,rec.Pret,rec.Comentarii,rec.Data,Convert(varbinary(max),u.Poza) as Poza
 from Restaurante as r
 inner join RecenziiRestaurante as rec
 on rec.RestaurantID = r.RestaurantID

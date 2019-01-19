@@ -32,6 +32,8 @@ namespace TripAdvisor.Views
                 getRestaurantDetails_Result details = db.getRestaurantDetails(restId).ToList()[0];
                 GridDescription.DataContext = details;
                 InitalizePhotos(restId, details.Poza);
+                var reviewList = db.getRestaurantReviews(restId);
+                Listview_reviews.ItemsSource = reviewList;
             }
         }
 
@@ -92,6 +94,11 @@ namespace TripAdvisor.Views
                 _imageList.Insert(0, firstPhoto);
                 Textblock_published.DataContext = "Owner";
             }
+        }
+
+        private void Button_back_Click(object sender, RoutedEventArgs e)
+        {
+            (this.Parent as Panel).Children.Remove(this);
         }
     }
 }

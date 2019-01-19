@@ -52,5 +52,11 @@ namespace TripAdvisor.Views
             var usc = new ListRestaurantsView(_currentTown,_foodTypes[index].PreparatID);
             HomeWindow2.Instance.GridMain.Children.Add(usc);
         }
+
+        private void Button_seeAll_Click(object sender, RoutedEventArgs e)
+        {
+            var usc = new ListRestaurantsView(_currentTown);
+            HomeWindow2.Instance.GridMain.Children.Add(usc);
+        }
     }
 }

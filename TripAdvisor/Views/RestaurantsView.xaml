@@ -68,8 +68,8 @@
                        Margin="40,0,0,0" Style="{StaticResource TextblockStyle}"/>
             <Button Content="See all Restaurants" BorderBrush="#FF0D4F36"
                     Width="120" Height="20" VerticalAlignment="Center"
-                    HorizontalAlignment="Left" Margin="15,10,0,3"
-                    FontSize="10"
+                    HorizontalAlignment="Left" Margin="15,10,0,3" Name="Button_seeAll"
+                    FontSize="10" Click="Button_seeAll_Click"
                     Background="Transparent" Foreground="#FF0D4F36"/>
         </DockPanel>
 

@@ -120,18 +120,22 @@ namespace TripAdvisor
             {
                 case "ItemRestaurants":
                     usc = new RestaurantsView(Textbox_Town.Text);
+                    GridMain.Children.Clear();
                      GridMain.Children.Add(usc);
                     break;
                 case "ItemAtivities":
                     usc = new ActivitiesView();
+                    GridMain.Children.Clear();
                     GridMain.Children.Add(usc);
                     break;
                 case "ItemHotels":
                     usc = new HotelsView();
+                    GridMain.Children.Clear();
                     GridMain.Children.Add(usc);
                     break;
                 case "ItemHome":
                     usc = new TownOverviewView(Textbox_Town.Text);
+                    GridMain.Children.Clear();
                     GridMain.Children.Add(usc);
                     break;
                 default:

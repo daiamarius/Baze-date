@@ -18,5 +18,6 @@ namespace TripAdvisor
         public int Pret { get; set; }
         public string Comentarii { get; set; }
         public System.DateTime Data { get; set; }
+        public byte[] Poza { get; set; }
     }
 }

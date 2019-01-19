@@ -42,11 +42,11 @@
         
         <StackPanel HorizontalAlignment="Left" Grid.Row="1" Grid.Column="1" Width="250" VerticalAlignment="Center">
             <TextBox Name="Textbox_email"
-                Margin="9"
+                Margin="9" Background="LightGray" Opacity="0.4"
                 FontFamily="Heebo"
                 FontSize="16"/>
             <PasswordBox Name="Textbox_password"
-                FontFamily="Heebo"
+                FontFamily="Heebo" Background="LightGray" Opacity="0.4"
                 Margin="9"
                 FontSize="16"/>
         </StackPanel>

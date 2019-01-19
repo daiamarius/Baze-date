@@ -17,7 +17,7 @@
         </Style>
     </UserControl.Resources>
     
-    <Grid Background="#FFBAF1EA">
+    <Grid Background="#FFBAF1EA" Name="Grid_TownOverview">
         <Grid.RowDefinitions>
             <RowDefinition Height="30"/>
             <RowDefinition Height="*"/>
@@ -61,10 +61,10 @@
                                 <TextBlock Text="{Binding Path=NrReviewuri, StringFormat=' {0} reviews'}"
                                            FontFamily="Heebo" HorizontalAlignment="Center"
                                            VerticalAlignment="Center"/>
-                                <ProgressBar Name="Bar_userRating"
+                                <materialDesign:RatingBar Name="Bar_userRating"
                                              Value="{Binding UserReview}"
-                                             Height="10" Width="120"
-                                             Minimum="0" Maximum="5"
+                                             Height="25" Width="120"
+                                             Min="1" Max="5"
                                              HorizontalAlignment="Right"
                                              VerticalAlignment="Center"
                                              Margin="3" Foreground="Yellow"/>
@@ -87,5 +87,11 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+
+        <TextBlock Text="{Binding StringFormat='Best Hotels in {0}:'}" Grid.Row="2" Name="Textblock_bestHotels"
+                       Style="{StaticResource TextblockStyle}" Margin="20,7,0,0"/>
+
+        <TextBlock Text="{Binding StringFormat='Best Things to do in {0}:'}" Grid.Row="4" Name="Textblock_bestActivities"
+                       Style="{StaticResource TextblockStyle}" Margin="20,7,0,0"/>
     </Grid>
 </UserControl>

@@ -28,9 +28,22 @@ namespace TripAdvisor
             DataContext = new CreateAccountView();
             var hw = HomeWindow2.Instance;
             hw.Show();
-            //var hw = new HomeWindow();
-            //hw.Show();
             this.Close();
+        }
+
+        private void Button_minimizeWindow_Click(object sender, RoutedEventArgs e)
+        {
+            this.WindowState = WindowState.Minimized;
+        }
+
+        private void Button_closeWindow_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
+
+        private void Grid_topBar_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            DragMove();
         }
     }
 }

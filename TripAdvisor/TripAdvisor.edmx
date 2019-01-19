@@ -1234,6 +1234,7 @@ warning 6002: The table/view 'TripAdvisor.dbo.Rezervari' does not have a primary
           <Property Type="Int32" Name="Pret" Nullable="false" />
           <Property Type="String" Name="Comentarii" Nullable="true" MaxLength="5000" />
           <Property Type="DateTime" Name="Data" Nullable="false" Precision="23" />
+          <Property Type="Binary" Name="Poza" Nullable="true" />
         </ComplexType>
         <ComplexType Name="getRestaurants_Result">
           <Property Type="Int32" Name="RestaurantID" Nullable="false" />
@@ -1491,6 +1492,7 @@ warning 6002: The table/view 'TripAdvisor.dbo.Rezervari' does not have a primary
                 <ScalarProperty Name="Pret" ColumnName="Pret" />
                 <ScalarProperty Name="Comentarii" ColumnName="Comentarii" />
                 <ScalarProperty Name="Data" ColumnName="Data" />
+                <ScalarProperty Name="Poza" ColumnName="Poza" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
