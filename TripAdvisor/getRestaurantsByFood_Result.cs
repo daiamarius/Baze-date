@@ -11,7 +11,7 @@ namespace TripAdvisor
 {
     using System;
     
-    public partial class getRestaurants_Result
+    public partial class getRestaurantsByFood_Result
     {
         public int RestaurantID { get; set; }
         public string Nume { get; set; }
@@ -19,14 +19,5 @@ namespace TripAdvisor
         public double UserReview { get; set; }
         public double UserPricing { get; set; }
         public int NrReviewuri { get; set; }
-        getRestaurants_Result()
-        {
-
-        }
-        public getRestaurants_Result(string nume, byte[] poza)
-        {
-            Nume = nume;
-            Poza = poza;
-        }
     }
 }

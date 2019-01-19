@@ -20,18 +20,21 @@ namespace TripAdvisor.Views
     public partial class RestaurantsView : UserControl
     {
         private List<getRestaurants_Result> _results;
+        private List<getPreparate_Result> _foodTypes;
+        string _currentTown;
         public RestaurantsView(string town)
         {
             InitializeComponent();
             if(town.Count()!=0)
             {
+                _currentTown = town;
                 Textblock_bestRestaurants.DataContext = town;
                 using (var db = new TripAdvisorEntities())
                 {
                     _results = db.getRestaurants(town).ToList();
-                    var foodTypes = db.getPreparate(town).ToList();
+                    _foodTypes = db.getPreparate(town).ToList();
                     listView_restaurants.ItemsSource = _results;
-                    listView_food.ItemsSource = foodTypes;
+                    listView_food.ItemsSource = _foodTypes;
                 }
             }
         }
@@ -39,13 +42,15 @@ namespace TripAdvisor.Views
         private void listView_restaurants_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             int index=listView_restaurants.SelectedIndex;
-            var usc = new RestaurantAccessedView(_results[index]);
+            var usc = new RestaurantAccessedView(_results[index].RestaurantID);
             HomeWindow2.Instance.GridMain.Children.Add(usc);
         }
 
         private void listView_food_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            int index = listView_food.SelectedIndex;
+            var usc = new ListRestaurantsView(_currentTown,_foodTypes[index].PreparatID);
+            HomeWindow2.Instance.GridMain.Children.Add(usc);
         }
     }
 }

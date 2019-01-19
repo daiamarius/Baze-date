@@ -21,25 +21,17 @@ namespace TripAdvisor.Views
     /// </summary>
     public partial class RestaurantAccessedView : UserControl
     {
-        private getRestaurants_Result _result;
         private List<getRestaurantPhotos_Result> _imageList;
         private int _imageIndex;
-        public RestaurantAccessedView(getRestaurants_Result result)
+
+        public RestaurantAccessedView(int restId)
         {
             InitializeComponent();
-            _result = result;
-            Textblock_title.Text = _result.Nume;
             using (var db = new TripAdvisorEntities())
             {
-                _imageList = db.getRestaurantPhotos(_result.RestaurantID).ToList();
-            }
-            _imageIndex = 0;
-            if (_result.Poza != null)
-            {
-                Image_imageSlider.Source = ConvertToImage(_result.Poza);
-                var firstPhoto = new getRestaurantPhotos_Result("Owner", "", _result.Poza, null);
-                _imageList.Insert(0, firstPhoto);
-                Textblock_published.DataContext = "Owner";
+                getRestaurantDetails_Result details = db.getRestaurantDetails(restId).ToList()[0];
+                GridDescription.DataContext = details;
+                InitalizePhotos(restId, details.Poza);
             }
         }
 
@@ -75,6 +67,31 @@ namespace TripAdvisor.Views
             bmpi.StreamSource = new MemoryStream(array);
             bmpi.EndInit();
             return bmpi;
+        }
+
+        private void InitalizePhotos(int restId, byte[] poza)
+        {
+            using (var db = new TripAdvisorEntities())
+            {
+                _imageList = db.getRestaurantPhotos(restId).ToList();
+                var menuList = db.getRestaurantMenu(restId).ToList();
+                int i = 0;
+                String menu = "";
+                while (i < menuList.Count())
+                {
+                    menu = menu + menuList[i].ToString() + ", ";
+                    i++;
+                }
+                Textblock_menu.Text = menu;
+            }
+            _imageIndex = 0;
+            if (poza != null)
+            {
+                Image_imageSlider.Source = ConvertToImage(poza);
+                var firstPhoto = new getRestaurantPhotos_Result("Owner", "", poza, null);
+                _imageList.Insert(0, firstPhoto);
+                Textblock_published.DataContext = "Owner";
+            }
         }
     }
 }

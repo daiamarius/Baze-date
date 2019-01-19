@@ -11,22 +11,15 @@ namespace TripAdvisor
 {
     using System;
     
-    public partial class getRestaurants_Result
+    public partial class getRestaurantDetails_Result
     {
-        public int RestaurantID { get; set; }
         public string Nume { get; set; }
+        public string Adresa { get; set; }
+        public string Program { get; set; }
+        public string NumarTelefon { get; set; }
         public byte[] Poza { get; set; }
         public double UserReview { get; set; }
         public double UserPricing { get; set; }
         public int NrReviewuri { get; set; }
-        getRestaurants_Result()
-        {
-
-        }
-        public getRestaurants_Result(string nume, byte[] poza)
-        {
-            Nume = nume;
-            Poza = poza;
-        }
     }
 }

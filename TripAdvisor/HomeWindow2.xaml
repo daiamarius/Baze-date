@@ -43,7 +43,7 @@
 
 
     <Grid>
-        <Grid x:Name="GridMain" HorizontalAlignment="Right" VerticalAlignment="Bottom" Height="530" Width="1020" Margin="0,0,-1,0"/>
+        <Grid x:Name="GridMain" HorizontalAlignment="Right" VerticalAlignment="Bottom" Height="530" Width="1025" Margin="0,0,-1,0"/>
         <Grid Height="70" VerticalAlignment="Top" Background="#FF036E61" MouseDown="Grid_MouseDown">
             <StackPanel Margin="220,8,0,0" HorizontalAlignment="Left" VerticalAlignment="Top">
                 <TextBlock Text="Where to? :"

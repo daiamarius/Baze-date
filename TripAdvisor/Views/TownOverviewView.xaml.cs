@@ -22,17 +22,22 @@ namespace TripAdvisor.Views
         public TownOverviewView(string town)
         {
             InitializeComponent();
-            using (var db = new TripAdvisorEntities())
+            if(town.Count()!=0)
             {
-                Textblock_bestRestaurants.DataContext = town;
-                _results = db.getTop3Restaurants(town).ToList();
-                Listview_topRestaurants.ItemsSource = _results;
+                using (var db = new TripAdvisorEntities())
+                {
+                    Textblock_bestRestaurants.DataContext = town;
+                    _results = db.getTop3Restaurants(town).ToList();
+                    Listview_topRestaurants.ItemsSource = _results;
+                }
             }
         }
 
         private void Listview_topRestaurants_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            int index = Listview_topRestaurants.SelectedIndex;
+            var usc = new RestaurantAccessedView(_results[index].RestaurantID);
+            HomeWindow2.Instance.GridMain.Children.Add(usc);
         }
     }
 }

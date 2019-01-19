@@ -53,6 +53,15 @@ namespace TripAdvisor
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getPreparate_Result>("getPreparate", orasParameter);
         }
     
+        public virtual ObjectResult<getRestaurantDetails_Result> getRestaurantDetails(Nullable<int> restId)
+        {
+            var restIdParameter = restId.HasValue ?
+                new ObjectParameter("restId", restId) :
+                new ObjectParameter("restId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getRestaurantDetails_Result>("getRestaurantDetails", restIdParameter);
+        }
+    
         public virtual ObjectResult<string> getRestaurantMenu(Nullable<int> restId)
         {
             var restIdParameter = restId.HasValue ?
@@ -71,6 +80,15 @@ namespace TripAdvisor
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getRestaurantPhotos_Result>("getRestaurantPhotos", restaurantIDParameter);
         }
     
+        public virtual ObjectResult<getRestaurantReviews_Result> getRestaurantReviews(Nullable<int> restId)
+        {
+            var restIdParameter = restId.HasValue ?
+                new ObjectParameter("restId", restId) :
+                new ObjectParameter("restId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getRestaurantReviews_Result>("getRestaurantReviews", restIdParameter);
+        }
+    
         public virtual ObjectResult<getRestaurants_Result> getRestaurants(string oras)
         {
             var orasParameter = oras != null ?
@@ -78,6 +96,19 @@ namespace TripAdvisor
                 new ObjectParameter("Oras", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getRestaurants_Result>("getRestaurants", orasParameter);
+        }
+    
+        public virtual ObjectResult<getRestaurantsByFood_Result> getRestaurantsByFood(string oras, Nullable<int> foodtype)
+        {
+            var orasParameter = oras != null ?
+                new ObjectParameter("Oras", oras) :
+                new ObjectParameter("Oras", typeof(string));
+    
+            var foodtypeParameter = foodtype.HasValue ?
+                new ObjectParameter("Foodtype", foodtype) :
+                new ObjectParameter("Foodtype", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getRestaurantsByFood_Result>("getRestaurantsByFood", orasParameter, foodtypeParameter);
         }
     
         public virtual ObjectResult<getTop3Restaurants_Result> getTop3Restaurants(string oras)

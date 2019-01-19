@@ -16,5 +16,6 @@ namespace TripAdvisor
         public byte[] Poza { get; set; }
         public string Denumire { get; set; }
         public Nullable<int> KindNumber { get; set; }
+        public int PreparatID { get; set; }
     }
 }

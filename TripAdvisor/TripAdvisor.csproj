@@ -84,7 +84,16 @@
     <Compile Include="getPreparate_Result.cs">
       <DependentUpon>TripAdvisor.tt</DependentUpon>
     </Compile>
+    <Compile Include="getRestaurantDetails_Result.cs">
+      <DependentUpon>TripAdvisor.tt</DependentUpon>
+    </Compile>
     <Compile Include="getRestaurantPhotos_Result.cs">
+      <DependentUpon>TripAdvisor.tt</DependentUpon>
+    </Compile>
+    <Compile Include="getRestaurantReviews_Result.cs">
+      <DependentUpon>TripAdvisor.tt</DependentUpon>
+    </Compile>
+    <Compile Include="getRestaurantsByFood_Result.cs">
       <DependentUpon>TripAdvisor.tt</DependentUpon>
     </Compile>
     <Compile Include="getRestaurants_Result.cs">
@@ -162,6 +171,9 @@
     <Compile Include="Views\HotelsView.xaml.cs">
       <DependentUpon>HotelsView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\ListRestaurantsView.xaml.cs">
+      <DependentUpon>ListRestaurantsView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\LoginView.xaml.cs">
       <DependentUpon>LoginView.xaml</DependentUpon>
     </Compile>
@@ -203,6 +215,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Views\HotelsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ListRestaurantsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
