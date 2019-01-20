@@ -23,18 +23,24 @@ namespace TripAdvisor
         private static HomeWindow2 _instance;
         public string _orasCurent;
         public List<string> _orase;
+        private Utilizatori _currentUser;
 
         public static HomeWindow2 Instance
         {
             get
             {
-                if (_instance == null)
-                    _instance = new HomeWindow2();
                 return _instance;
             }
         }
 
-        private HomeWindow2()
+        public static HomeWindow2 createInstance(int userId)
+        {
+                if (_instance == null)
+                    _instance = new HomeWindow2(userId);
+                return _instance;
+        }
+
+        private HomeWindow2(int userId)
         {
             InitializeComponent();
             using (var context = new TripAdvisorEntities())
@@ -42,8 +48,15 @@ namespace TripAdvisor
                 var orase = from c in context.Orase
                             orderby c.Nume
                             select c.Nume;
+                _currentUser = (from x in context.Utilizatori
+                                where x.UserID == userId
+                                select new { Nume = x.Nume, Email = x.Email, Prenume = x.Prenume, Poza = x.Poza }).ToList()
+                                .Select(x => new Utilizatori { Nume = x.Nume, Email = x.Email, Prenume = x.Prenume, Poza = x.Poza }).FirstOrDefault();
+                Textblock_user.Text = _currentUser.Nume + " " + _currentUser.Prenume;
+                Grid_user.DataContext = _currentUser;
                 _orase = orase.ToList();
             }
+            GridMain.Children.Add(new FirstView());
             Textbox_Town.TextChanged += new TextChangedEventHandler(Textbox_Town_TextChanged);
         }
 
@@ -55,6 +68,7 @@ namespace TripAdvisor
         private void Button_openMenu_Click(object sender, RoutedEventArgs e)
         {
             Button_openMenu.Visibility = Visibility.Hidden;
+            Button_UserAccount.Visibility = Visibility.Visible;
             Button_closeMenu.Visibility = Visibility.Visible;
         }
 
@@ -62,6 +76,7 @@ namespace TripAdvisor
         {
             Button_openMenu.Visibility = Visibility.Visible;
             Button_closeMenu.Visibility = Visibility.Hidden;
+            Button_UserAccount.Visibility = Visibility.Hidden;
         }
 
         private void Listbox_Town_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -173,6 +188,12 @@ namespace TripAdvisor
         private void Grid_MouseDown(object sender, MouseButtonEventArgs e)
         {
             DragMove();
+        }
+
+        private void Button_UserAccount_Click(object sender, RoutedEventArgs e)
+        {
+            UserControl usc = new AccountSettings();
+            GridMain.Children.Add(usc);
         }
     }
 }

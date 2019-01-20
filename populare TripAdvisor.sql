@@ -69,6 +69,8 @@ VALUES (111,1),(111,5),(111,3),(113,1),(113,2),(112,4),(112,5)
 
 
 SET IDENTITY_INSERT dbo.Utilizatori ON
+INSERT INTO Utilizatori(UserID, Nume, Prenume, Parola, NrTelefon, Email)
+SELECT '4', 'Daia', 'Marius', '123', '0768443372', 'test@gmail.com'
 INSERT INTO Utilizatori(UserID, Nume, Prenume, Parola, NrTelefon, Email, Poza)
 SELECT '1','Timis','Diana','123','0733705260','diana.timis97@gmail.com', BulkColumn FROM OPENROWSET(BULK 'D:\TripAdvisor\Poze\diana.jpg', SINGLE_BLOB ) as Poza 
 
@@ -78,8 +80,7 @@ SELECT '2', 'Mota', 'Alexandra', '123', '0768543672', 'mota.alexandra@gmail.com'
 INSERT INTO Utilizatori(UserID, Nume, Prenume, Parola, NrTelefon, Email, Poza)
 SELECT '3', 'Daia', 'Marius', '123', '0768543372', 'daia.marius@gmail.com', BulkColumn FROM OPENROWSET(BULK 'D:\TripAdvisor\Poze\sica.jpg', SINGLE_BLOB) as Poza
 
-INSERT INTO Utilizatori(UserID, Nume, Prenume, Parola, NrTelefon, Email)
-values (4,'test','test','123','0777777777','test@gmail.com')
+
 SET IDENTITY_INSERT dbo.Utilizatori OFF
 
 

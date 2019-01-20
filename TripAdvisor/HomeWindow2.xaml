@@ -11,6 +11,8 @@
         WindowStyle="None" Foreground="White"
         Icon="/Resources/tripadvisor_icon.png">
     <Window.Resources>
+        <BitmapImage x:Key="DefaultImage" UriSource="/Resources/noprofile.png"/>
+     
         <Storyboard x:Key="MenuOpen">
             <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)"
                                            Storyboard.TargetName="GridMenu">
@@ -162,22 +164,36 @@
             </Grid.Background>
 
             <StackPanel>
-                <Grid Height="70" Background="AliceBlue">
-                    <Button x:Name="Button_openMenu" Height="60" Width="60"
-                            Margin="5" HorizontalAlignment="Right" VerticalAlignment="Top"
+                <Grid Height="70" Background="AliceBlue" Name="Grid_user">
+                    <Button Height="70" Width="200" HorizontalAlignment="Left" VerticalAlignment="Center" Background="{x:Null}" Visibility="Hidden"
+                            BorderBrush="LightGray" Name="Button_UserAccount" Click="Button_UserAccount_Click" HorizontalContentAlignment="Left">
+                        <DockPanel>
+                            <Ellipse Height="45" Width="45" VerticalAlignment="Center">
+                                <Ellipse.Fill>
+                                    <ImageBrush ImageSource="{Binding Poza,FallbackValue={StaticResource DefaultImage},
+                                    TargetNullValue={StaticResource DefaultImage}}"/>
+                                </Ellipse.Fill>
+                            </Ellipse>
+                            <TextBlock Text="Username" Name="Textblock_user" VerticalAlignment="Center" Margin="5,0,0,0"
+                               HorizontalAlignment="Left" Foreground="#FF074534" FontFamily="Heebo" FontSize="10"/>
+                        </DockPanel>
+                    </Button>
+                    <Button x:Name="Button_openMenu" Height="50" Width="50"
+                            Margin="5" HorizontalAlignment="Right" VerticalAlignment="Center"
                             Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}"
-                            Background="{x:Null}" BorderBrush="{x:Null}"
+                            Background="AliceBlue" BorderBrush="{x:Null}"
                             Foreground="#FF31577E" Click="Button_openMenu_Click">
                         <materialDesign:PackIcon Kind="Menu" Width="25" Height="25"/>
                     </Button>
                     <Button x:Name="Button_closeMenu" Visibility="Collapsed"
-                            Height="60" Width="60" Margin="5"
-                            HorizontalAlignment="Right" VerticalAlignment="Top"
+                            Height="50" Width="50" Margin="5"
+                            HorizontalAlignment="Right" VerticalAlignment="Center"
                             Style="{StaticResource MaterialDesignFloatingActionMiniAccentButton}"
-                            Background="{x:Null}" BorderBrush="{x:Null}"
+                            Background="AliceBlue" BorderBrush="{x:Null}"
                             Foreground="#FF31577E" Click="Button_closeMenu_Click">
                         <materialDesign:PackIcon Kind="ArrowLeft" Width="25" Height="25"/>
                     </Button>
+                   
 
                 </Grid>
                 <ListView Foreground="#FF036E61"

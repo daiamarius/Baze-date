@@ -41,7 +41,11 @@ namespace TripAdvisor.Views
                     //System.Windows.MessageBox.Show(result.ToString());
                     if (result == 1)
                     {
-                        HomeWindow2 hw = HomeWindow2.Instance;
+                        var userid = (from c in context.Utilizatori
+                                        where c.Parola == password
+                                        where c.Email == email
+                                        select c.UserID).FirstOrDefault();
+                        HomeWindow2 hw = HomeWindow2.createInstance(userid);
                         hw.Show();
                         //App.Current.MainWindow.Close();
                         Window parentWindow = Window.GetWindow(this);

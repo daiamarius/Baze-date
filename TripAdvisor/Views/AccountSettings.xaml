@@ -1,0 +1,19 @@
+﻿<UserControl x:Class="TripAdvisor.Views.AccountSettings"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:TripAdvisor.Views"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d" 
+             d:DesignHeight="530" d:DesignWidth="1020">
+    <Grid Background="#FF461A1A">
+        <Button Name="Button_back" Click="Button_back_Click" Width="100" Background="#FF3E9D80"
+                        VerticalAlignment="Top" HorizontalAlignment="Center" Margin="5">
+            <DockPanel>
+                <materialDesign:PackIcon Kind="ArrowLeftBoldCircle" VerticalAlignment="Center"/>
+                <TextBlock Text="Back" VerticalAlignment="Center" Margin="10,0,5,1"/>
+            </DockPanel>
+        </Button>
+    </Grid>
+</UserControl>

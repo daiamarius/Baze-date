@@ -162,11 +162,17 @@
     <Compile Include="Utilizatori.cs">
       <DependentUpon>TripAdvisor.tt</DependentUpon>
     </Compile>
+    <Compile Include="Views\AccountSettings.xaml.cs">
+      <DependentUpon>AccountSettings.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ActivitiesView.xaml.cs">
       <DependentUpon>ActivitiesView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\CreateAccountView.xaml.cs">
       <DependentUpon>CreateAccountView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\FirstView.xaml.cs">
+      <DependentUpon>FirstView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\HotelsView.xaml.cs">
       <DependentUpon>HotelsView.xaml</DependentUpon>
@@ -194,6 +200,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\AccountSettings.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\ActivitiesView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -214,6 +224,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\FirstView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\HotelsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -286,14 +300,11 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\noimage.jpg" />
-    <Resource Include="Resources\leftarrow.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Resources\rightarrow.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Resource>
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Resources\noprofile.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
     <Content Include="TripAdvisor.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>TripAdvisor.edmx</DependentUpon>

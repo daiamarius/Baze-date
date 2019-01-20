@@ -26,7 +26,7 @@ namespace TripAdvisor
         {
             InitializeComponent();
             DataContext = new CreateAccountView();
-            var hw = HomeWindow2.Instance;
+            var hw = HomeWindow2.createInstance(3);
             hw.Show();
             this.Close();
         }
