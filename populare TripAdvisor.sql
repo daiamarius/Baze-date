@@ -78,6 +78,8 @@ SELECT '2', 'Mota', 'Alexandra', '123', '0768543672', 'mota.alexandra@gmail.com'
 INSERT INTO Utilizatori(UserID, Nume, Prenume, Parola, NrTelefon, Email, Poza)
 SELECT '3', 'Daia', 'Marius', '123', '0768543372', 'daia.marius@gmail.com', BulkColumn FROM OPENROWSET(BULK 'D:\TripAdvisor\Poze\sica.jpg', SINGLE_BLOB) as Poza
 
+INSERT INTO Utilizatori(UserID, Nume, Prenume, Parola, NrTelefon, Email)
+values (4,'test','test','123','0777777777','test@gmail.com')
 SET IDENTITY_INSERT dbo.Utilizatori OFF
 
 
