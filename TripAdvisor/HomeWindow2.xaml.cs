@@ -31,13 +31,22 @@ namespace TripAdvisor
             {
                 return _instance;
             }
+            set
+            {
+                _instance = value;
+            }
         }
 
         public static HomeWindow2 createInstance(int userId)
         {
-                if (_instance == null)
-                    _instance = new HomeWindow2(userId);
-                return _instance;
+            _instance = new HomeWindow2(userId);
+            return _instance;
+        }
+
+        ~HomeWindow2()
+        {
+            if (HomeWindow2.Instance != null)
+                HomeWindow2.Instance = null;
         }
 
         private HomeWindow2(int userId)
@@ -50,19 +59,34 @@ namespace TripAdvisor
                             select c.Nume;
                 _currentUser = (from x in context.Utilizatori
                                 where x.UserID == userId
-                                select new { Nume = x.Nume, Email = x.Email, Prenume = x.Prenume, Poza = x.Poza }).ToList()
-                                .Select(x => new Utilizatori { Nume = x.Nume, Email = x.Email, Prenume = x.Prenume, Poza = x.Poza }).FirstOrDefault();
+                                select new { UserID = x.UserID,Nume = x.Nume, Email = x.Email, Prenume = x.Prenume, Poza = x.Poza, NrTelefon = x.NrTelefon }).ToList()
+                                .Select(x => new Utilizatori { UserID = x.UserID,Nume = x.Nume, Email = x.Email, Prenume = x.Prenume, Poza = x.Poza, NrTelefon = x.NrTelefon }).FirstOrDefault();
                 Textblock_user.Text = _currentUser.Nume + " " + _currentUser.Prenume;
+                _currentUser.UserID = userId;
                 Grid_user.DataContext = _currentUser;
                 _orase = orase.ToList();
             }
-            GridMain.Children.Add(new FirstView());
+            GridMain.Children.Add(new FirstView(_currentUser.Prenume));
             Textbox_Town.TextChanged += new TextChangedEventHandler(Textbox_Town_TextChanged);
+        }
+
+        public void UpdateUser()
+        {
+            using (var context = new TripAdvisorEntities())
+            {
+                _currentUser = (from x in context.Utilizatori
+                                where x.UserID == _currentUser.UserID
+                                select new {UserID = x.UserID, Nume = x.Nume, Email = x.Email, Prenume = x.Prenume, Poza = x.Poza, NrTelefon = x.NrTelefon }).ToList()
+                               .Select(x => new Utilizatori {UserID = x.UserID, Nume = x.Nume, Email = x.Email, Prenume = x.Prenume, Poza = x.Poza, NrTelefon = x.NrTelefon }).FirstOrDefault();
+            }
+            Textblock_user.Text = _currentUser.Nume + " " + _currentUser.Prenume;
+            Grid_user.DataContext = _currentUser;
         }
 
         private void Button_logout_Click(object sender, RoutedEventArgs e)
         {
-            Application.Current.Shutdown();
+            this.Hide();
+            MainWindow.Instance.Show();
         }
 
         private void Button_openMenu_Click(object sender, RoutedEventArgs e)
@@ -160,7 +184,8 @@ namespace TripAdvisor
 
         private void Button_account_Click(object sender, RoutedEventArgs e)
         {
-
+            UserControl usc = new AccountSettings(_currentUser);
+            GridMain.Children.Add(usc);
         }
 
         private void Button_closeWindow_Click(object sender, RoutedEventArgs e)
@@ -192,7 +217,7 @@ namespace TripAdvisor
 
         private void Button_UserAccount_Click(object sender, RoutedEventArgs e)
         {
-            UserControl usc = new AccountSettings();
+            UserControl usc = new AccountSettings(_currentUser);
             GridMain.Children.Add(usc);
         }
     }

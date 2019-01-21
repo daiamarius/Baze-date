@@ -100,5 +100,10 @@ namespace TripAdvisor.Views
         {
             (this.Parent as Panel).Children.Remove(this);
         }
+
+        private void Button_submitReview_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show(Bar_Review.Value.ToString());
+        }
     }
 }

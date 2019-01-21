@@ -81,7 +81,8 @@ ObiectivID int primary key identity(1000,1),
 Denumire varchar(255) not null,
 Locatie varchar(255) not null,
 OrasID int foreign key references Orase(OrasID) not null,
-CategorieID int foreign key references CategoriiObiective(CategorieID) not null
+CategorieID int foreign key references CategoriiObiective(CategorieID) not null,
+Poza image
 )
 Create table PozeRestaurante
 (

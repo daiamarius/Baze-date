@@ -49,7 +49,7 @@ namespace TripAdvisor.Views
                         hw.Show();
                         //App.Current.MainWindow.Close();
                         Window parentWindow = Window.GetWindow(this);
-                        parentWindow.Close();
+                        parentWindow.Hide();
                     }
                     else
                         MessageBox.Show("Invalid email or password!", "Login failed");
@@ -59,7 +59,8 @@ namespace TripAdvisor.Views
 
         private void Button_createAccount_Click(object sender, RoutedEventArgs e)
         {
-            App.Current.MainWindow.DataContext = new CreateAccountView();
+            Window parentWindow = Window.GetWindow(this);
+            parentWindow.DataContext = new CreateAccountView();
         }
     }
 }

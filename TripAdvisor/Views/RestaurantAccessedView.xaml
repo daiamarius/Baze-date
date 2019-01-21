@@ -10,19 +10,21 @@
     <UserControl.Resources>
         <Style x:Key="TextblockStyle" TargetType="TextBlock">
             <Setter Property="FontSize" Value="14" />
-            <Setter Property="FontWeight" Value="DemiBold" />
-            <Setter Property="FontFamily" Value="Heebo" />
-            <Setter Property="Foreground" Value="#FF0D4F36"/>
+            <Setter Property="FontFamily" Value="Heebo"/>
+            <Setter Property="FontWeight" Value="DemiBold"/>
+            <Setter Property="Foreground" Value="Black"/>
             <Setter Property="HorizontalAlignment" Value="Left"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="Margin" Value="5"/>
         </Style>
+        <BitmapImage x:Key="DefaultImage" UriSource="/Resources/noprofile.png"/>
     </UserControl.Resources>
     <ScrollViewer Grid.ColumnSpan="2" HorizontalAlignment="Right" Grid.RowSpan="2"
                       VerticalScrollBarVisibility="Visible" CanContentScroll="True" Name="ScrollBar">
-        <Grid Background="#FF33BFA8" Name="GridContent" Width="1025">
+        <Grid Background="AliceBlue" Name="GridContent" Width="1025">
             <Grid.RowDefinitions>
                 <RowDefinition Height="350"/>
+                <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
@@ -42,11 +44,17 @@
                             <TextBlock Text="Back" VerticalAlignment="Center" Margin="10,0,5,1"/>
                         </DockPanel>
                     </Button>
-                    <StackPanel Background="AliceBlue" VerticalAlignment="Center" HorizontalAlignment="Center">
+                    <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <StackPanel.Background>
+                            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                <GradientStop Color="#FF109488" Offset="1"/>
+                                <GradientStop Color="#FF082E2A"/>
+                            </LinearGradientBrush>
+                        </StackPanel.Background>
                         <Image Name="Image_imageSlider" Source="/Resources/noimage.jpg"
                         Height="240" Width="440"  Margin="7" HorizontalAlignment="Center" VerticalAlignment="Top"/>
                         <TextBlock Name="Textblock_published" Text="{Binding StringFormat='Published by: {0}'}" Foreground="Black"
-                            FontFamily="Heebo" FontSize="8" Margin="5,5,15,5" HorizontalAlignment="Right" VerticalAlignment="Top"/>
+                            FontFamily="Heebo" FontSize="10" Margin="5,5,15,5" HorizontalAlignment="Right" VerticalAlignment="Top"/>
                     </StackPanel>
                 </StackPanel>
                 <Button Name="Button_imageRight" Click="Button_imageRight_Click" Width="40" Height="40" BorderBrush="Black"
@@ -106,7 +114,7 @@
                     <TextBlock Text="{Binding UserPricing, StringFormat='({0})'}"  FontSize="12" Style="{StaticResource TextblockStyle}"/>
                 </DockPanel>
             </Grid>
-            <StackPanel Grid.Row="2" Grid.ColumnSpan="2">
+            <StackPanel Grid.Row="1" Grid.ColumnSpan="2">
                 <TextBlock Text="Reviews:" Style="{StaticResource TextblockStyle}" HorizontalAlignment="Center" FontSize="20"/>
                 <ItemsControl Name="Listview_reviews" Margin="25,10,25,10">
                     <ItemsControl.ItemsPanel>
@@ -125,19 +133,28 @@
                                     <ColumnDefinition Width="150"/>
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
+
+                                <Rectangle Opacity="1" Grid.ColumnSpan="2" Margin="5" Grid.RowSpan="2">
+                                    <Rectangle.Fill>
+                                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                            <GradientStop Color="#FF057C68"/>
+                                            <GradientStop Color="#FF002C2C" Offset="1"/>
+                                        </LinearGradientBrush>
+                                    </Rectangle.Fill>
+                                </Rectangle>
                                 <TextBlock Text="{Binding Nume}" Style="{StaticResource TextblockStyle}" Foreground="Black"
-                                           VerticalAlignment="Center" HorizontalAlignment="Center" Margin="5"/>
-                                <Rectangle Fill="LightGray" Opacity="0.4" Grid.ColumnSpan="2" Margin="5" Grid.RowSpan="2"/>
+                                           VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0,15,0,0"/>
                                 <materialDesign:PackIcon Kind="AccountCircle" Height="100" Width="100" Grid.RowSpan="2" Margin="0,30,0,0"
                                                          HorizontalAlignment="Center" VerticalAlignment="Center" Name="PAKicon">
                                 </materialDesign:PackIcon>
                                 <Ellipse Height="100" Width="100" VerticalAlignment="Center" HorizontalAlignment="Center"
                                          Grid.RowSpan="2" Margin="0,30,0,0">
                                     <Ellipse.Fill>
-                                        <ImageBrush ImageSource="{Binding Poza}"/>
+                                        <ImageBrush ImageSource="{Binding Poza, FallbackValue={StaticResource DefaultImage}, 
+                                            TargetNullValue={StaticResource DefaultImage}}"/>
                                     </Ellipse.Fill>
                                 </Ellipse>
-                                <DockPanel Margin="5" Grid.Column="1" Grid.Row="0">
+                                <DockPanel Margin="5" Grid.Column="1" Grid.Row="0" VerticalAlignment="Top">
                                     <TextBlock Text="Rating: " Style="{StaticResource TextblockStyle}"/>
                                     <materialDesign:RatingBar Value="{Binding Stele}" Min="1" Max="5" VerticalAlignment="Center"
                                                               HorizontalAlignment="Left" Margin="5" Foreground="Yellow"/>
@@ -148,13 +165,34 @@
                                     <TextBlock Text="{Binding Data}" Style="{StaticResource TextblockStyle}"
                                                HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5"/>
                                 </DockPanel>
-                                <Rectangle Fill="Black" Opacity="0.1" Grid.Column="1" Grid.Row="1" Margin="10"/>
+                                <Rectangle Fill="AliceBlue" Opacity="0.2" Grid.Column="1" Grid.Row="1" Margin="10"/>
                                 <TextBlock Text="{Binding Comentarii}" Style="{StaticResource TextblockStyle}"
-                                           Grid.Row="1" Grid.Column="2" Margin="20,5,5,5"/>
+                                           Grid.Row="1" Grid.Column="2" Margin="20,15,15,5" TextWrapping="Wrap"/>
                             </Grid>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
+            </StackPanel>
+            <StackPanel Grid.Row="2" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10">
+                <TextBlock Text="Submit a review:" Style="{StaticResource TextblockStyle}"/>
+                <Grid>
+                    <Grid.Background>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="#FF057C68"/>
+                            <GradientStop Color="#FF002C2C" Offset="1"/>
+                        </LinearGradientBrush>
+                    </Grid.Background>
+                    <DockPanel HorizontalAlignment="Center" VerticalAlignment="Center" Margin="15">
+                        <TextBox HorizontalAlignment="Center" Width="800" MinHeight="80" TextWrapping="Wrap" Background="AliceBlue"
+                             Opacity="0.5"/>
+                        <StackPanel HorizontalAlignment="Right" VerticalAlignment="Center">
+                            <materialDesign:RatingBar Width="120" Height="40" HorizontalAlignment="Left" VerticalAlignment="Top"
+                                                      Foreground="Yellow" Margin="25,5,5,5" Name="Bar_Review"/>
+                            <Button Content="Submit Review" HorizontalAlignment="Right" Name="Button_submitReview"
+                                Click="Button_submitReview_Click" Margin="25,5,5,5"/>
+                        </StackPanel>
+                    </DockPanel>
+                </Grid>
             </StackPanel>
         </Grid>
     </ScrollViewer>
