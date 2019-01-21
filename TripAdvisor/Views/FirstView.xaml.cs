@@ -21,10 +21,9 @@ namespace TripAdvisor.Views
     /// </summary>
     public partial class FirstView : UserControl
     {
-        public FirstView(string Prenume)
+        public FirstView()
         {
             InitializeComponent();
-            Textblock_welcome.DataContext = Prenume;
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)

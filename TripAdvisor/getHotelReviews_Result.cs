@@ -11,23 +11,13 @@ namespace TripAdvisor
 {
     using System;
     
-    public partial class getRestaurantPhotos_Result
+    public partial class getHotelReviews_Result
     {
         public string Nume { get; set; }
-        public string Prenume { get; set; }
+        public int Stele { get; set; }
+        public int Pret { get; set; }
+        public string Comentarii { get; set; }
+        public System.DateTime Data { get; set; }
         public byte[] Poza { get; set; }
-        public Nullable<System.DateTime> Data { get; set; }
-        getRestaurantPhotos_Result()
-        {
-
-        }
-
-        public getRestaurantPhotos_Result(string nume, string prenume, byte[] poza, Nullable<System.DateTime> data)
-        {
-            Nume = nume;
-            Prenume = prenume;
-            Poza = poza;
-            Data = data;
-        }
     }
 }

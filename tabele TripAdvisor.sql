@@ -75,14 +75,15 @@ RestaurantID int foreign key references Restaurante(RestaurantID) not null,
 PreparatID int foreign key references Preparate(PreparatID) not null,
 CONSTRAINT pk_Meniu PRIMARY KEY (RestaurantID,PreparatID)
 )
+
+
 Create table Obiective
 (
 ObiectivID int primary key identity(1000,1),
 Denumire varchar(255) not null,
 Locatie varchar(255) not null,
 OrasID int foreign key references Orase(OrasID) not null,
-CategorieID int foreign key references CategoriiObiective(CategorieID) not null,
-Poza image
+CategorieID int foreign key references CategoriiObiective(CategorieID) not null
 )
 Create table PozeRestaurante
 (
@@ -97,8 +98,11 @@ CameraID int primary key identity(1000,1),
 CazareID int foreign key references Cazare(CazareID) not null,
 Adresa varchar(5000),
 NumarPaturi int not null,
-PretPerNoapte int not null
+PretPerNoapte int not null,
+Poza image not null
 )
+
+
 Create table Rezervari
 (
 UserID int foreign key references Utilizatori(UserID) not null,

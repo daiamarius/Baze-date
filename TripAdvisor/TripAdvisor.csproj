@@ -42,10 +42,10 @@
       <HintPath>packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="MaterialDesignColors">
-      <HintPath>packages\MaterialDesignColors.1.1.2\lib\net45\MaterialDesignColors.dll</HintPath>
+      <HintPath>..\..\..\TripAdvisor4\Baze-date-master\TripAdvisor\packages\MaterialDesignColors.1.1.2\lib\net45\MaterialDesignColors.dll</HintPath>
     </Reference>
     <Reference Include="MaterialDesignThemes.Wpf">
-      <HintPath>packages\MaterialDesignThemes.2.3.1.953\lib\net45\MaterialDesignThemes.Wpf.dll</HintPath>
+      <HintPath>..\..\..\TripAdvisor4\Baze-date-master\TripAdvisor\packages\MaterialDesignThemes.2.3.1.953\lib\net45\MaterialDesignThemes.Wpf.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -81,6 +81,24 @@
     <Compile Include="Cazare.cs">
       <DependentUpon>TripAdvisor.tt</DependentUpon>
     </Compile>
+    <Compile Include="getHotelDetails_Result.cs">
+      <DependentUpon>TripAdvisor.tt</DependentUpon>
+    </Compile>
+    <Compile Include="getHotelPhotos_Result.cs">
+      <DependentUpon>TripAdvisor.tt</DependentUpon>
+    </Compile>
+    <Compile Include="getHotelReviews_Result.cs">
+      <DependentUpon>TripAdvisor.tt</DependentUpon>
+    </Compile>
+    <Compile Include="getHotelRoomPhotos_Result.cs">
+      <DependentUpon>TripAdvisor.tt</DependentUpon>
+    </Compile>
+    <Compile Include="getHotelsByRooms_Result.cs">
+      <DependentUpon>TripAdvisor.tt</DependentUpon>
+    </Compile>
+    <Compile Include="getHotels_Result.cs">
+      <DependentUpon>TripAdvisor.tt</DependentUpon>
+    </Compile>
     <Compile Include="getPreparate_Result.cs">
       <DependentUpon>TripAdvisor.tt</DependentUpon>
     </Compile>
@@ -97,6 +115,9 @@
       <DependentUpon>TripAdvisor.tt</DependentUpon>
     </Compile>
     <Compile Include="getRestaurants_Result.cs">
+      <DependentUpon>TripAdvisor.tt</DependentUpon>
+    </Compile>
+    <Compile Include="getTop3Hotels_Result.cs">
       <DependentUpon>TripAdvisor.tt</DependentUpon>
     </Compile>
     <Compile Include="getTop3Restaurants_Result.cs">
@@ -174,8 +195,14 @@
     <Compile Include="Views\FirstView.xaml.cs">
       <DependentUpon>FirstView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\HotelAccessedView.xaml.cs">
+      <DependentUpon>HotelAccessedView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\HotelsView.xaml.cs">
       <DependentUpon>HotelsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ListHotelsView.xaml.cs">
+      <DependentUpon>ListHotelsView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ListRestaurantsView.xaml.cs">
       <DependentUpon>ListRestaurantsView.xaml</DependentUpon>
@@ -228,7 +255,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\HotelAccessedView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\HotelsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ListHotelsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -305,6 +340,8 @@
     <Resource Include="Resources\noprofile.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="TripAdvisor.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>TripAdvisor.edmx</DependentUpon>

@@ -25,6 +25,7 @@ namespace TripAdvisor
         public string Adresa { get; set; }
         public int NumarPaturi { get; set; }
         public int PretPerNoapte { get; set; }
+        public byte[] Poza { get; set; }
     
         public virtual Cazare Cazare { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

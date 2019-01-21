@@ -22,29 +22,13 @@ namespace TripAdvisor
     /// </summary>
     public partial class MainWindow : Window
     {
-        private static MainWindow _instance;
         public MainWindow()
         {
             InitializeComponent();
-            this.Show();
-            DataContext = new LoginView();
-            this.Hide();
-            HomeWindow2 hw;
-            if (HomeWindow2.Instance == null)
-                hw = HomeWindow2.createInstance(3);
-            else hw = HomeWindow2.Instance;
+            DataContext = new CreateAccountView();
+            var hw = HomeWindow2.createInstance(3);
             hw.Show();
-        }
-
-        public static MainWindow Instance
-        {
-            get
-            {
-                if (_instance == null)
-                    _instance = new MainWindow();
-
-                return _instance;
-            }
+            this.Close();
         }
 
         private void Button_minimizeWindow_Click(object sender, RoutedEventArgs e)

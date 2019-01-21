@@ -119,7 +119,17 @@ SELECT '11', '11', 'Intercontinental', 5, '00 1 877-859-5095', 'hotel.interconti
 
 INSERT INTO Cazare(CazareId, OrasID, Nume, Stele, NrTelefon, Email, Adresa, Poza)
 SELECT '12', '11', 'Grand Hotel Continental', 4, '0758 692 589', 'grand.hotel@gmail.com','Calea Victoriei 56, Bucharest 010083, Romania',  BulkColumn FROM OPENROWSET (BULK 'D:\TripAdvisor\Poze\grandhotelcontinental.png', SINGLE_BLOB )as Poza 
+
+INSERT INTO Cazare(CazareId, OrasID, Nume, Stele, NrTelefon, Email, Adresa, Poza)
+SELECT '13', '11', 'Ambiance Hotel Bucharest', 5, '075 692 589', 'ambiance.hotel@gmail.com','Calea Ferentari 56, Bucharest 010083, Romania',  BulkColumn FROM OPENROWSET (BULK 'D:\TripAdvisor\Poze\ambiancehotel.png', SINGLE_BLOB )as Poza 
+
+
+INSERT INTO Cazare(CazareId, OrasID, Nume, Stele, NrTelefon, Email, Adresa, Poza)
+SELECT '14', '11', 'Sheraton Hotel Bucharest', 2, '075 606 089', 'sheraton.hotel@gmail.com','Bulevardul George Cosbuc 50, Bucharest 010083, Romania',  BulkColumn FROM OPENROWSET (BULK 'D:\TripAdvisor\Poze\sheratonhostel.png', SINGLE_BLOB )as Poza 
 SET IDENTITY_INSERT dbo.Cazare OFF
+
+select * from Cazare
+
 
 
 INSERT INTO PozeHotel(CazareId, UtilizatorID, Poza)
@@ -212,26 +222,42 @@ Must-do for your visit to Bucharest and this tour was the best part of my visit.
 SET IDENTITY_INSERT dbo.RecenziiActivitati OFF
 
 SET IDENTITY_INSERT dbo.Camere ON
-INSERT INTO Camere( CameraID, CazareID, NumarPaturi, PretPerNoapte)
-VALUES            (1, 11, 1, 250),
-                  (2, 11, 1, 280),
-				  (3, 11, 2, 250),
-				  (4, 11, 2, 200),
-				  (5, 11, 2, 180),
-				  (6, 11, 3, 300),
-				  (7, 12, 1, 275),
-				  (8, 12, 1, 300), 
-				  (9, 12, 2, 290), 
-				  (10, 12, 2, 296),
-				  (11, 12, 3, 300),
-				  (12, 12, 2, 350), 
-				  (13, 12, 2, 320), 
-				  (14, 12, 3, 300),
-				  (15, 12, 2, 270),
-				  (16, 12, 2, 280)
-
-
+INSERT INTO Camere( CameraID, CazareID, NumarPaturi, PretPerNoapte, Poza)
+Select '1', '11', '1', '250', BulkColumn FROM OPENROWSET (BULK 'D:\TripAdvisor\Poze\intercontinental1pat.jpg', SINGLE_BLOB) as Poza
+INSERT INTO Camere( CameraID, CazareID, NumarPaturi, PretPerNoapte, Poza)
+Select '2', '11', '1', '280', BulkColumn FROM OPENROWSET (BULK 'D:\TripAdvisor\Poze\intercontinental1pat2.jpg', SINGLE_BLOB) as Poza
+INSERT INTO Camere( CameraID, CazareID, NumarPaturi, PretPerNoapte, Poza)
+Select '3', '11', '1', '200', BulkColumn FROM OPENROWSET (BULK 'D:\TripAdvisor\Poze\intercontinental1pat3.jpg', SINGLE_BLOB) as Poza
+INSERT INTO Camere( CameraID, CazareID, NumarPaturi, PretPerNoapte, Poza)
+Select '4', '11', '3', '360', BulkColumn FROM OPENROWSET (BULK 'D:\TripAdvisor\Poze\intercontinental3pat.jpg', SINGLE_BLOB) as Poza
+INSERT INTO Camere( CameraID, CazareID, NumarPaturi, PretPerNoapte, Poza)
+Select '5', '11', '2', '300', BulkColumn FROM OPENROWSET (BULK 'D:\TripAdvisor\Poze\intercontinental2pat.jpg', SINGLE_BLOB) as Poza
+INSERT INTO Camere( CameraID, CazareID, NumarPaturi, PretPerNoapte, Poza)
+Select '6', '11', '2', '290', BulkColumn FROM OPENROWSET (BULK 'D:\TripAdvisor\Poze\intercontinental2pat1.jpg', SINGLE_BLOB) as Poza
+INSERT INTO Camere( CameraID, CazareID, NumarPaturi, PretPerNoapte, Poza)
+Select '7', '12', '3', '250', BulkColumn FROM OPENROWSET (BULK 'D:\TripAdvisor\Poze\pizza.jpg', SINGLE_BLOB) as Poza
+INSERT INTO Camere( CameraID, CazareID, NumarPaturi, PretPerNoapte, Poza)
+Select '8', '12', '3', '220', BulkColumn FROM OPENROWSET (BULK 'D:\TripAdvisor\Poze\pizza.jpg', SINGLE_BLOB) as Poza
+INSERT INTO Camere( CameraID, CazareID, NumarPaturi, PretPerNoapte, Poza)
+Select '9', '12', '2', '475', BulkColumn FROM OPENROWSET (BULK 'D:\TripAdvisor\Poze\pizza.jpg', SINGLE_BLOB) as Poza
+INSERT INTO Camere( CameraID, CazareID, NumarPaturi, PretPerNoapte, Poza)
+Select '10', '12', '1', '269', BulkColumn FROM OPENROWSET (BULK 'D:\TripAdvisor\Poze\grandhotelcontinental1pat.png', SINGLE_BLOB) as Poza
+INSERT INTO Camere( CameraID, CazareID, NumarPaturi, PretPerNoapte, Poza)
+Select '17', '12', '2', '400', BulkColumn FROM OPENROWSET (BULK 'D:\TripAdvisor\Poze\grandhotelcontinental2pat.png', SINGLE_BLOB) as Poza
+INSERT INTO Camere( CameraID, CazareID, NumarPaturi, PretPerNoapte, Poza)
+Select '11', '12', '2', '248', BulkColumn FROM OPENROWSET (BULK 'D:\TripAdvisor\Poze\grandhotelcontinental2pat1.png', SINGLE_BLOB) as Poza
+INSERT INTO Camere( CameraID, CazareID, NumarPaturi, PretPerNoapte, Poza)
+Select '12', '12', '1', '369', BulkColumn FROM OPENROWSET (BULK 'D:\TripAdvisor\Poze\grandhotelcontinental1pat1.png', SINGLE_BLOB) as Poza
+INSERT INTO Camere( CameraID, CazareID, NumarPaturi, PretPerNoapte, Poza)
+Select '13', '12', '3', '290', BulkColumn FROM OPENROWSET (BULK 'D:\TripAdvisor\Poze\grandhotelcontinental3pat.png', SINGLE_BLOB) as Poza
+INSERT INTO Camere( CameraID, CazareID, NumarPaturi, PretPerNoapte, Poza)
+Select '14', '12', '1', '376', BulkColumn FROM OPENROWSET (BULK 'D:\TripAdvisor\Poze\grandhotelcontinental1pat2.png', SINGLE_BLOB) as Poza
+INSERT INTO Camere( CameraID, CazareID, NumarPaturi, PretPerNoapte, Poza)
+Select '15', '12', '2', '299', BulkColumn FROM OPENROWSET (BULK 'D:\TripAdvisor\Poze\grandhotelcontinental2pat3.png', SINGLE_BLOB) as Poza
+INSERT INTO Camere( CameraID, CazareID, NumarPaturi, PretPerNoapte, Poza)
+Select '16', '12', '1', '399', BulkColumn FROM OPENROWSET (BULK 'D:\TripAdvisor\Poze\grandhotelcontinental1pat3.png', SINGLE_BLOB) as Poza
 SET IDENTITY_INSERT dbo.Camere OFF
+
 
 
 INSERT INTO Rezervari(UserID, CameraID, DataCheckin, DataCheckout)
@@ -239,4 +265,19 @@ VALUES (1, 1, '2019-02-20 22:00' , '2019-02-22 10:00' ),
        (1, 12, '2019-03-01 17:45', '2019-03-04 11:00' ),
 	   (2, 13, '2019-04-02 18:30', '2019-04-03 12:00' ),
 	   (3, 10, '2019-04-02 17:20', '2019-04-04 08:00' ),
-	   (3, 1, '2019-02-23 12:00',  '2019-02-24 07:30' )
+	   (3, 1, '2019-02-23 17:20',  '2019-02-24 07:30' ),
+	   (3, 2, '2019-02-23 12:00',  '2019-02-24 07:30' ),
+	   (2, 3, '2019-02-23 12:00',  '2019-02-24 07:30' ),
+	   (3, 4, '2019-02-23 12:00',  '2019-02-24 07:30' ),
+	   (2, 5, '2019-02-23 12:00',  '2019-02-24 07:30' ),
+	   (3, 6, '2019-02-23 12:00',  '2019-02-24 07:30' ),
+	   (1, 7, '2019-02-23 12:00',  '2019-02-24 07:30' ),
+	   (2, 8, '2019-02-23 12:00',  '2019-02-24 07:30' ),
+	   (3, 9, '2019-02-23 12:00',  '2019-02-24 07:30' ),
+	   (1, 10, '2019-02-23 12:00',  '2019-02-24 07:30' ),
+	   (3, 14, '2019-02-23 12:00',  '2019-02-24 07:30' ),
+	   (3, 15, '2019-02-23 12:00',  '2019-02-24 07:30' ),
+	   (3, 16, '2019-02-23 12:00',  '2019-02-24 07:30' ),
+	   (3, 17, '2019-02-23 12:00',  '2019-02-24 07:30' )
+
+	   

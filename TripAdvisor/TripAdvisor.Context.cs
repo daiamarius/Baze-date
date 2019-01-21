@@ -44,6 +44,33 @@ namespace TripAdvisor
         public virtual DbSet<PozeRestaurante> PozeRestaurante { get; set; }
         public virtual DbSet<Rezervari> Rezervari { get; set; }
     
+        public virtual ObjectResult<getHotelDetails_Result> getHotelDetails(Nullable<int> cazareId)
+        {
+            var cazareIdParameter = cazareId.HasValue ?
+                new ObjectParameter("cazareId", cazareId) :
+                new ObjectParameter("cazareId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getHotelDetails_Result>("getHotelDetails", cazareIdParameter);
+        }
+    
+        public virtual ObjectResult<getHotelReviews_Result> getHotelReviews(Nullable<int> cazareId)
+        {
+            var cazareIdParameter = cazareId.HasValue ?
+                new ObjectParameter("cazareId", cazareId) :
+                new ObjectParameter("cazareId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getHotelReviews_Result>("getHotelReviews", cazareIdParameter);
+        }
+    
+        public virtual ObjectResult<getHotels_Result> getHotels(string oras)
+        {
+            var orasParameter = oras != null ?
+                new ObjectParameter("Oras", oras) :
+                new ObjectParameter("Oras", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getHotels_Result>("getHotels", orasParameter);
+        }
+    
         public virtual ObjectResult<getPreparate_Result> getPreparate(string oras)
         {
             var orasParameter = oras != null ?
@@ -111,6 +138,15 @@ namespace TripAdvisor
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getRestaurantsByFood_Result>("getRestaurantsByFood", orasParameter, foodtypeParameter);
         }
     
+        public virtual ObjectResult<getTop3Hotels_Result> getTop3Hotels(string oras)
+        {
+            var orasParameter = oras != null ?
+                new ObjectParameter("Oras", oras) :
+                new ObjectParameter("Oras", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getTop3Hotels_Result>("getTop3Hotels", orasParameter);
+        }
+    
         public virtual ObjectResult<getTop3Restaurants_Result> getTop3Restaurants(string oras)
         {
             var orasParameter = oras != null ?
@@ -118,6 +154,46 @@ namespace TripAdvisor
                 new ObjectParameter("Oras", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getTop3Restaurants_Result>("getTop3Restaurants", orasParameter);
+        }
+    
+        public virtual ObjectResult<getHotelPhotos_Result> getHotelPhotos(Nullable<int> cazareID)
+        {
+            var cazareIDParameter = cazareID.HasValue ?
+                new ObjectParameter("cazareID", cazareID) :
+                new ObjectParameter("cazareID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getHotelPhotos_Result>("getHotelPhotos", cazareIDParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> getHotelRooms(Nullable<int> cazareId)
+        {
+            var cazareIdParameter = cazareId.HasValue ?
+                new ObjectParameter("cazareId", cazareId) :
+                new ObjectParameter("cazareId", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("getHotelRooms", cazareIdParameter);
+        }
+    
+        public virtual ObjectResult<getHotelRoomPhotos_Result> getHotelRoomPhotos(string oras)
+        {
+            var orasParameter = oras != null ?
+                new ObjectParameter("Oras", oras) :
+                new ObjectParameter("Oras", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getHotelRoomPhotos_Result>("getHotelRoomPhotos", orasParameter);
+        }
+    
+        public virtual ObjectResult<getHotelsByRooms_Result> getHotelsByRooms(string oras, Nullable<int> numarPaturi)
+        {
+            var orasParameter = oras != null ?
+                new ObjectParameter("Oras", oras) :
+                new ObjectParameter("Oras", typeof(string));
+    
+            var numarPaturiParameter = numarPaturi.HasValue ?
+                new ObjectParameter("NumarPaturi", numarPaturi) :
+                new ObjectParameter("NumarPaturi", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<getHotelsByRooms_Result>("getHotelsByRooms", orasParameter, numarPaturiParameter);
         }
     }
 }

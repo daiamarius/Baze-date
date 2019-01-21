@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'D:\Sem 1\Proiecte Visual Studio\TripAdvisor\TripAdvisor\TripAdvisor.edmx'. 
+﻿// T4 code generation is enabled for model 'D:\Anul3\Anul3sem1\BazeDeDate\GitWork\TripAdvisor6\Baze-date-master\TripAdvisor\TripAdvisor.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

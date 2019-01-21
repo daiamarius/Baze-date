@@ -28,5 +28,6 @@ namespace TripAdvisor
             Nume = nume;
             Poza = poza;
         }
+
     }
 }

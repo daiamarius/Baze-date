@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="TripAdvisorModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="TripAdvisorModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Camere">
           <Key>
             <PropertyRef Name="CameraID" />
@@ -14,6 +14,7 @@
           <Property Name="Adresa" Type="varchar" MaxLength="5000" />
           <Property Name="NumarPaturi" Type="int" Nullable="false" />
           <Property Name="PretPerNoapte" Type="int" Nullable="false" />
+          <Property Name="Poza" Type="image" Nullable="false" />
         </EntityType>
         <EntityType Name="CategoriiObiective">
           <Key>
@@ -456,6 +457,28 @@ warning 6002: The table/view 'TripAdvisor.dbo.Rezervari' does not have a primary
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="getHotelDetails" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="cazareId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="getHotelPhotos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="cazareID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="getHotelReviews" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="cazareId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="getHotelRoomPhotos" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Oras" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="getHotelRooms" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="cazareId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="getHotels" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Oras" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="getHotelsByRooms" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Oras" Type="nvarchar" Mode="In" />
+          <Parameter Name="NumarPaturi" Type="int" Mode="In" />
+        </Function>
         <Function Name="getPreparate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Oras" Type="nvarchar" Mode="In" />
         </Function>
@@ -477,6 +500,9 @@ warning 6002: The table/view 'TripAdvisor.dbo.Rezervari' does not have a primary
         <Function Name="getRestaurantsByFood" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Oras" Type="nvarchar" Mode="In" />
           <Parameter Name="Foodtype" Type="int" Mode="In" />
+        </Function>
+        <Function Name="getTop3Hotels" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Oras" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="getTop3Restaurants" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Oras" Type="nvarchar" Mode="In" />
@@ -617,8 +643,7 @@ warning 6002: The table/view 'TripAdvisor.dbo.Rezervari' does not have a primary
             <End Role="Rezervari" EntitySet="Rezervari" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="TripAdvisorModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -631,6 +656,7 @@ warning 6002: The table/view 'TripAdvisor.dbo.Rezervari' does not have a primary
           <Property Name="Adresa" Type="String" MaxLength="5000" FixedLength="false" Unicode="false" />
           <Property Name="NumarPaturi" Type="Int32" Nullable="false" />
           <Property Name="PretPerNoapte" Type="Int32" Nullable="false" />
+          <Property Name="Poza" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
           <NavigationProperty Name="Cazare" Relationship="Self.FK__Camere__CazareID__5AEE82B9" FromRole="Camere" ToRole="Cazare" />
           <NavigationProperty Name="Rezervari" Relationship="Self.FK__Rezervari__Camer__5DCAEF64" FromRole="Camere" ToRole="Rezervari" />
         </EntityType>
@@ -1180,32 +1206,84 @@ warning 6002: The table/view 'TripAdvisor.dbo.Rezervari' does not have a primary
             <End Role="Preparate" EntitySet="Preparate" />
             <End Role="Restaurante" EntitySet="Restaurante" />
           </AssociationSet>
+          <FunctionImport Name="getHotelDetails" ReturnType="Collection(TripAdvisorModel.getHotelDetails_Result)">
+          <Parameter Name="cazareId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="getHotelReviews" ReturnType="Collection(TripAdvisorModel.getHotelReviews_Result)">
+          <Parameter Name="cazareId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="getHotels" ReturnType="Collection(TripAdvisorModel.getHotels_Result)">
+          <Parameter Name="Oras" Mode="In" Type="String" />
+          </FunctionImport>
           <FunctionImport Name="getPreparate" ReturnType="Collection(TripAdvisorModel.getPreparate_Result)">
-            <Parameter Name="Oras" Mode="In" Type="String" />
+          <Parameter Name="Oras" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="getRestaurantDetails" ReturnType="Collection(TripAdvisorModel.getRestaurantDetails_Result)">
-            <Parameter Name="restId" Mode="In" Type="Int32" />
+          <Parameter Name="restId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="getRestaurantMenu" ReturnType="Collection(String)">
-            <Parameter Name="restId" Mode="In" Type="Int32" />
+          <Parameter Name="restId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="getRestaurantPhotos" ReturnType="Collection(TripAdvisorModel.getRestaurantPhotos_Result)">
-            <Parameter Name="restaurantID" Mode="In" Type="Int32" />
+          <Parameter Name="restaurantID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="getRestaurantReviews" ReturnType="Collection(TripAdvisorModel.getRestaurantReviews_Result)">
-            <Parameter Name="restId" Mode="In" Type="Int32" />
+          <Parameter Name="restId" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="getRestaurants" ReturnType="Collection(TripAdvisorModel.getRestaurants_Result)">
-            <Parameter Name="Oras" Mode="In" Type="String" />
+          <Parameter Name="Oras" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="getRestaurantsByFood" ReturnType="Collection(TripAdvisorModel.getRestaurantsByFood_Result)">
             <Parameter Name="Oras" Mode="In" Type="String" />
             <Parameter Name="Foodtype" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="getTop3Hotels" ReturnType="Collection(TripAdvisorModel.getTop3Hotels_Result)">
+          <Parameter Name="Oras" Mode="In" Type="String" />
+          </FunctionImport>
           <FunctionImport Name="getTop3Restaurants" ReturnType="Collection(TripAdvisorModel.getTop3Restaurants_Result)">
+          <Parameter Name="Oras" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="getHotelPhotos" ReturnType="Collection(TripAdvisorModel.getHotelPhotos_Result)">
+          <Parameter Name="cazareID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="getHotelRooms" ReturnType="Collection(Int32)">
+          <Parameter Name="cazareId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="getHotelRoomPhotos" ReturnType="Collection(TripAdvisorModel.getHotelRoomPhotos_Result)">
+          <Parameter Name="Oras" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="getHotelsByRooms" ReturnType="Collection(TripAdvisorModel.getHotelsByRooms_Result)">
             <Parameter Name="Oras" Mode="In" Type="String" />
+            <Parameter Name="NumarPaturi" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
+        <ComplexType Name="getHotelDetails_Result">
+          <Property Type="String" Name="Nume" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="Adresa" Nullable="true" MaxLength="5000" />
+          <Property Type="String" Name="Email" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="NrTelefon" Nullable="true" MaxLength="255" />
+          <Property Type="Binary" Name="Poza" Nullable="true" />
+          <Property Type="Double" Name="UserReview" Nullable="false" />
+          <Property Type="Double" Name="UserPricing" Nullable="false" />
+          <Property Type="Int32" Name="NrReviewuri" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="getHotelReviews_Result">
+          <Property Type="String" Name="Nume" Nullable="false" MaxLength="511" />
+          <Property Type="Int32" Name="Stele" Nullable="false" />
+          <Property Type="Int32" Name="Pret" Nullable="false" />
+          <Property Type="String" Name="Comentarii" Nullable="true" MaxLength="5000" />
+          <Property Type="DateTime" Name="Data" Nullable="false" Precision="23" />
+          <Property Type="Binary" Name="Poza" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="getHotels_Result">
+          <Property Type="Int32" Name="CazareID" Nullable="false" />
+          <Property Type="String" Name="Nume" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="Adresa" Nullable="true" MaxLength="5000" />
+          <Property Type="Binary" Name="Poza" Nullable="true" />
+          <Property Type="Double" Name="UserReview" Nullable="false" />
+          <Property Type="Double" Name="UserPricing" Nullable="false" />
+          <Property Type="Int32" Name="NrReviewuri" Nullable="false" />
+        </ComplexType>
         <ComplexType Name="getPreparate_Result">
           <Property Type="Binary" Name="Poza" Nullable="true" />
           <Property Type="String" Name="Denumire" Nullable="false" MaxLength="255" />
@@ -1252,8 +1330,35 @@ warning 6002: The table/view 'TripAdvisor.dbo.Rezervari' does not have a primary
           <Property Type="Double" Name="UserPricing" Nullable="false" />
           <Property Type="Int32" Name="NrReviewuri" Nullable="false" />
         </ComplexType>
+        <ComplexType Name="getTop3Hotels_Result">
+          <Property Type="Int32" Name="CazareID" Nullable="false" />
+          <Property Type="String" Name="Nume" Nullable="false" MaxLength="255" />
+          <Property Type="Binary" Name="Poza" Nullable="true" />
+          <Property Type="Double" Name="UserReview" Nullable="false" />
+          <Property Type="Double" Name="UserPricing" Nullable="false" />
+          <Property Type="Int32" Name="NrReviewuri" Nullable="false" />
+        </ComplexType>
         <ComplexType Name="getTop3Restaurants_Result">
           <Property Type="Int32" Name="RestaurantID" Nullable="false" />
+          <Property Type="String" Name="Nume" Nullable="false" MaxLength="255" />
+          <Property Type="Binary" Name="Poza" Nullable="true" />
+          <Property Type="Double" Name="UserReview" Nullable="false" />
+          <Property Type="Double" Name="UserPricing" Nullable="false" />
+          <Property Type="Int32" Name="NrReviewuri" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="getHotelPhotos_Result">
+          <Property Type="String" Name="Nume" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="Prenume" Nullable="false" MaxLength="255" />
+          <Property Type="Binary" Name="Poza" Nullable="false" MaxLength="Max" />
+          <Property Type="DateTime" Name="Data" Nullable="false" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="getHotelRoomPhotos_Result">
+          <Property Type="Binary" Name="Poza" Nullable="true" />
+          <Property Type="Int32" Name="NumarPaturi" Nullable="false" />
+          <Property Type="Int32" Name="KindNumber" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="getHotelsByRooms_Result">
+          <Property Type="Int32" Name="CazareID" Nullable="false" />
           <Property Type="String" Name="Nume" Nullable="false" MaxLength="255" />
           <Property Type="Binary" Name="Poza" Nullable="true" />
           <Property Type="Double" Name="UserReview" Nullable="false" />
@@ -1274,6 +1379,7 @@ warning 6002: The table/view 'TripAdvisor.dbo.Rezervari' does not have a primary
                 <ScalarProperty Name="Adresa" ColumnName="Adresa" />
                 <ScalarProperty Name="NumarPaturi" ColumnName="NumarPaturi" />
                 <ScalarProperty Name="PretPerNoapte" ColumnName="PretPerNoapte" />
+                <ScalarProperty Name="Poza" ColumnName="Poza" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1449,6 +1555,45 @@ warning 6002: The table/view 'TripAdvisor.dbo.Rezervari' does not have a primary
               <ScalarProperty Name="RestaurantID" ColumnName="RestaurantID" />
             </EndProperty>
           </AssociationSetMapping>
+          <FunctionImportMapping FunctionImportName="getHotelDetails" FunctionName="TripAdvisorModel.Store.getHotelDetails">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TripAdvisorModel.getHotelDetails_Result">
+                <ScalarProperty Name="Nume" ColumnName="Nume" />
+                <ScalarProperty Name="Adresa" ColumnName="Adresa" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="NrTelefon" ColumnName="NrTelefon" />
+                <ScalarProperty Name="Poza" ColumnName="Poza" />
+                <ScalarProperty Name="UserReview" ColumnName="UserReview" />
+                <ScalarProperty Name="UserPricing" ColumnName="UserPricing" />
+                <ScalarProperty Name="NrReviewuri" ColumnName="NrReviewuri" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="getHotelReviews" FunctionName="TripAdvisorModel.Store.getHotelReviews">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TripAdvisorModel.getHotelReviews_Result">
+                <ScalarProperty Name="Nume" ColumnName="Nume" />
+                <ScalarProperty Name="Stele" ColumnName="Stele" />
+                <ScalarProperty Name="Pret" ColumnName="Pret" />
+                <ScalarProperty Name="Comentarii" ColumnName="Comentarii" />
+                <ScalarProperty Name="Data" ColumnName="Data" />
+                <ScalarProperty Name="Poza" ColumnName="Poza" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="getHotels" FunctionName="TripAdvisorModel.Store.getHotels">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TripAdvisorModel.getHotels_Result">
+                <ScalarProperty Name="CazareID" ColumnName="CazareID" />
+                <ScalarProperty Name="Nume" ColumnName="Nume" />
+                <ScalarProperty Name="Adresa" ColumnName="Adresa" />
+                <ScalarProperty Name="Poza" ColumnName="Poza" />
+                <ScalarProperty Name="UserReview" ColumnName="UserReview" />
+                <ScalarProperty Name="UserPricing" ColumnName="UserPricing" />
+                <ScalarProperty Name="NrReviewuri" ColumnName="NrReviewuri" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="getPreparate" FunctionName="TripAdvisorModel.Store.getPreparate">
             <ResultMapping>
               <ComplexTypeMapping TypeName="TripAdvisorModel.getPreparate_Result">
@@ -1520,10 +1665,54 @@ warning 6002: The table/view 'TripAdvisor.dbo.Rezervari' does not have a primary
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="getTop3Hotels" FunctionName="TripAdvisorModel.Store.getTop3Hotels">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TripAdvisorModel.getTop3Hotels_Result">
+                <ScalarProperty Name="CazareID" ColumnName="CazareID" />
+                <ScalarProperty Name="Nume" ColumnName="Nume" />
+                <ScalarProperty Name="Poza" ColumnName="Poza" />
+                <ScalarProperty Name="UserReview" ColumnName="UserReview" />
+                <ScalarProperty Name="UserPricing" ColumnName="UserPricing" />
+                <ScalarProperty Name="NrReviewuri" ColumnName="NrReviewuri" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="getTop3Restaurants" FunctionName="TripAdvisorModel.Store.getTop3Restaurants">
             <ResultMapping>
               <ComplexTypeMapping TypeName="TripAdvisorModel.getTop3Restaurants_Result">
                 <ScalarProperty Name="RestaurantID" ColumnName="RestaurantID" />
+                <ScalarProperty Name="Nume" ColumnName="Nume" />
+                <ScalarProperty Name="Poza" ColumnName="Poza" />
+                <ScalarProperty Name="UserReview" ColumnName="UserReview" />
+                <ScalarProperty Name="UserPricing" ColumnName="UserPricing" />
+                <ScalarProperty Name="NrReviewuri" ColumnName="NrReviewuri" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="getHotelPhotos" FunctionName="TripAdvisorModel.Store.getHotelPhotos">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TripAdvisorModel.getHotelPhotos_Result">
+                <ScalarProperty Name="Nume" ColumnName="Nume" />
+                <ScalarProperty Name="Prenume" ColumnName="Prenume" />
+                <ScalarProperty Name="Poza" ColumnName="Poza" />
+                <ScalarProperty Name="Data" ColumnName="Data" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="getHotelRooms" FunctionName="TripAdvisorModel.Store.getHotelRooms" />
+          <FunctionImportMapping FunctionImportName="getHotelRoomPhotos" FunctionName="TripAdvisorModel.Store.getHotelRoomPhotos">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TripAdvisorModel.getHotelRoomPhotos_Result">
+                <ScalarProperty Name="Poza" ColumnName="Poza" />
+                <ScalarProperty Name="NumarPaturi" ColumnName="NumarPaturi" />
+                <ScalarProperty Name="KindNumber" ColumnName="KindNumber" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="getHotelsByRooms" FunctionName="TripAdvisorModel.Store.getHotelsByRooms">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="TripAdvisorModel.getHotelsByRooms_Result">
+                <ScalarProperty Name="CazareID" ColumnName="CazareID" />
                 <ScalarProperty Name="Nume" ColumnName="Nume" />
                 <ScalarProperty Name="Poza" ColumnName="Poza" />
                 <ScalarProperty Name="UserReview" ColumnName="UserReview" />

@@ -71,8 +71,7 @@ namespace TripAdvisor.Views
 
         private void Button_signIn_Click(object sender, RoutedEventArgs e)
         {
-            Window parentWindow = Window.GetWindow(this);
-            parentWindow.DataContext = new LoginView();
+            App.Current.MainWindow.DataContext = new LoginView();
         }
     }
 }
